@@ -112,10 +112,11 @@ Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones
 
 ## Autores ✒️
 
-Jose cruz, Estefany quiroga y Brenda duran
+Jose cruz, Esthefany quiroga y Brenda duran
 
-* **brenda duran** - *Desarrollo* - [Maxpower](https://github.com/maxpower)
-* **jose cruz** - *Documentación* - [Cosmefulanito](#Cosmefulanito)
+* **brenda duran** - *Desarrollo* 
+* **Esthefany quiroga** *Desarrollo*
+* **jose cruz** - *Desarrolo*
 
 ## Licencia 📄
 
