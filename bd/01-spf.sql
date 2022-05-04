@@ -54,6 +54,7 @@ BEGIN
 
             )
             
+
 -- Segundo ejercicio de STORED PROCEDURE 01-SPF.SQL
 -- Se pide hacer el SP ‘registrarCliente’ que reciba los datos del cliente. Es importante guardar encriptada la contraseña del cliente usando SHA256.
 DELIMITER %% 
@@ -68,4 +69,19 @@ END %%
 -- Realizar el SP ‘top10’ que reciba por parámetro 2 fechas, el SP tiene que devolver identificador y nombre de la película y la cantidad de entradas vendidas para la misma entre las 2 fechas. Ordenar por cantidad de entradas de mayor a menor.
 DELIMITER %%
 DROP PROCEDURE IF EXISTS  top10 %%
-CREATE PROCEDURE top10 ()
+CREATE PROCEDURE top10 (unMenorFecha DATETIME, unMayorFecha DATETIME) 
+begin 
+    SELECT p.idPelicula, nombre, COUNT(*) 'Cantidad de Entradas Vendidas' 
+    FROM Pelicula p
+    JOIN Proyeccion pro ON p.idPelicula = pro.idPelicula 
+    JOIN Entrada e ON pro.idProyeccion = e.idProyeccion
+    WHERE fechahora BETWEEN unMenorFecha 
+    AND unMayorFecha
+    GROUP BY p.idPelicula
+    ORDER BY COUNT(*) DESC
+end%% 
+
+-- Realizar el SF llamado ‘RecaudacionPara’ que reciba por parámetro un identificador de película y 2 fechas, la función tiene que retornar la recaudación de la película entre esas 2 fechas.
+
+DELIMITER == 
+DROP FUNCTION IF EXISTS 
