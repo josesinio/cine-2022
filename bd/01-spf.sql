@@ -93,5 +93,6 @@ end%%
 
 -- Realizar el SF llamado ‘RecaudacionPara’ que reciba por parámetro un identificador de película y 2 fechas, la función tiene que retornar la recaudación de la película entre esas 2 fechas.
 
-DELIMITER == 
-DROP FUNCTION IF EXISTS 
+DELIMITER $$
+DROP FUNCTION IF EXISTS  RecaudacionPara $$
+CREATE FUNCTION RecaudacionPara (in idPelicula smallint unsigned, )
