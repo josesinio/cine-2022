@@ -64,17 +64,21 @@ BEGIN
         -- 2 ) usar ese id para el nro de entrada. 
 
         declare valor int;
-        SELECT count(numEntrada) into valor
+
+        SELECT count(*)+1 into valor
         FROM Proyeccion 
         JOIN entrada using (numEntrada)
+        WHERE idProyeccion = unidProyeccion;
+        AND idCliente = unidCliente
         WHERE IF EXISTS (
             SELECT *
             FROM Proyeccion
-            where idProyeccion = unidPelicula) then
+            where idProyeccion = unidProyeccion) then
             update Proyeccion
             set valor = valor  +1
             where idProyeccion = unidProyeccion
             and idCliente = unidCliente
+
 end $$
 
 -- Cuarto Ejercicio de STORED PROCEDURE 01-SPF.SQL
