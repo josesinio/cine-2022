@@ -38,23 +38,6 @@ BEGIN
 
 END
 
-# Se pide hacer el SP ‘venderEntrada’ que reciba por parámetro el id de la función, valor e identificación del cliente. Pensar en cómo hacer para darle valores consecutivos desde 1 al número de entrada por función.
-
-
-DELIMITER $$
-DROP PROCEDURE IF EXISTS venderEntrada $$
-CREATE PROCEDURE venderEntrada (in unidProyeccion smallint unsigned, in unidCliente smallint unsigned)
-BEGIN
-
-            SELECT * 
-            FROM proyeccion 
-            where EXISTS ( SELECT *
-            FROM proyeccion 
-            WHERE idProyeccion = unidProyeccion
-
-            )
-            
-
 -- Segundo ejercicio de STORED PROCEDURE 01-SPF.SQL
 -- Se pide hacer el SP ‘registrarCliente’ que reciba los datos del cliente. Es importante guardar encriptada la contraseña del cliente usando SHA256.
 DELIMITER %% 
@@ -64,6 +47,33 @@ BEGIN
     INSERT INTO Cliente (idCliente, Email, Nombre, Apellido, Clave, NumEntrada)
         VALUES (unidCliente, unEmail, unNombre, unApellido, SHA256 (unaClave, 256), unNumEntrada)
 END %% 
+
+-- Tercer ejercicio de STORED PROCEDURE 01-SPF.SQL
+-- Se pide hacer el SP ‘venderEntrada’ que reciba por parámetro el id de la función, valor e identificación del cliente. Pensar en cómo hacer para darle valores consecutivos desde 1 al número de entrada por función.
+
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS venderEntrada $$
+CREATE PROCEDURE venderEntrada (in unidProyeccion smallint unsigned, in unidCliente smallint unsigned, in numEntrada int not null)  returns smallint reads sql data
+
+BEGIN
+
+        -- 1 ) declarar var para id, se asigna como la cantidad de entradas para esa func + 1.
+        -- 2 ) usar ese id para el nro de entrada. 
+
+        declare valor int;
+        SELECT count(numEntrada) into valor
+        FROM Proyeccion 
+        JOIN entrada using (numEntrada)
+        WHERE IF EXISTS (
+            SELECT *
+            FROM Proyeccion
+            where idProyeccion = unidPelicula) then
+            update Proyeccion
+            set valor = valor  +1
+            where idProyeccion = unidProyeccion
+            and idCliente = unidCliente
+end $$
 
 -- Cuarto Ejercicio de STORED PROCEDURE 01-SPF.SQL
 -- Realizar el SP ‘top10’ que reciba por parámetro 2 fechas, el SP tiene que devolver identificador y nombre de la película y la cantidad de entradas vendidas para la misma entre las 2 fechas. Ordenar por cantidad de entradas de mayor a menor.
