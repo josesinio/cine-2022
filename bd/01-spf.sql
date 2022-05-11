@@ -1,3 +1,5 @@
+-- Primer ejercicio de STORED PROCEDURE 01-SPF.SQL
+-- Se pide hacer los SP para dar de alta todas las entidades (menos Entrada y Cliente) con el prefijo ‘alta’.
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaGenero $$
 CREATE PROCEDURE altaGenero ( in unidGenero tinyint unsigned, in ungenero varchar(45))
