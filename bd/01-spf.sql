@@ -56,7 +56,7 @@ END %%
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS venderEntrada $$
-CREATE PROCEDURE venderEntrada (in unidProyeccion smallint unsigned, in unidCliente smallint unsigned, in numEntrada int not null)  returns smallint reads sql data
+CREATE PROCEDURE venderEntrada (in unidProyeccion smallint unsigned, in unidCliente smallint unsigned, in numEntrada int not null)  
 
 BEGIN
 
