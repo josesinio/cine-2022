@@ -12,7 +12,7 @@ END $$
 
 DELIMITER $$ 
 DROP PROCEDURE IF EXISTS altaSala $$
-CREATE PROCEDURE altaSala (in unnumSala tinyint unsigned, in unpiso int, in unacapacidad smallint unsigned)
+CREATE PROCEDURE altaSala (in unnumSala tinyint unsigned, in unpiso tinyint unsigned, in unacapacidad smallint unsigned)
 BEGIN 
 
             INSERT  INTO Sala (numSala, piso, capacidad)
@@ -62,12 +62,10 @@ BEGIN
 
         -- 1 ) declarar var para id, se asigna como la cantidad de entradas para esa func + 1.
         -- 2 ) usar ese id para el nro de entrada. 
-
         declare valor int;
 
         SELECT count(*)+1 into valor
-        FROM Proyeccion 
-        JOIN entrada using (numEntrada)
+        FROM entrada
         WHERE idProyeccion = unidProyeccion;
         AND idCliente = unidCliente
         WHERE IF EXISTS (
@@ -75,7 +73,7 @@ BEGIN
             FROM Proyeccion
             where idProyeccion = unidProyeccion) then
             update Proyeccion
-            set valor = valor  +1
+            set valor = valor + 1
             where idProyeccion = unidProyeccion
             and idCliente = unidCliente
 
@@ -101,4 +99,14 @@ end%%
 
 DELIMITER $$
 DROP FUNCTION IF EXISTS  RecaudacionPara $$
-CREATE FUNCTION RecaudacionPara (in idPelicula smallint unsigned, )
+CREATE FUNCTION RecaudacionPara ( idPelicula smallint unsigned, inicio datetime ,fin datetime)
+begin 
+
+    declare recaudacion int;
+    SELECT SUM(valor) into recaudacion
+    from proyeccion 
+    join entrada USING (idproyeccion)
+    WHERE idpelicula = unidpelicula 
+    and fechaHora BETWEEN (inicio , fin)
+
+end $$

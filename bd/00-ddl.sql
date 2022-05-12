@@ -9,7 +9,7 @@ CREATE TABLE CINE.Genero(
 
 CREATE TABLE CINE.Sala(
     numSala tinyint unsigned not null,
-    piso int not null,
+    piso tinyint unsigned not null,
     capacidad smallint unsigned not null,
     primary key (numSala)
 );
@@ -30,7 +30,6 @@ CREATE TABLE CINE.Cliente(
     nombre varchar (45) not null,
     apellido varchar (45) not null,
     clave char(64) not null,
-    numEntrada int not null,
     primary key (idCliente),
     constraint UQ_Cliente_email unique (email)
 );
@@ -54,6 +53,7 @@ CREATE TABLE  CINE.Entrada(
     idCliente smallint unsigned not null,
     numSala tinyint unsigned not null,
     capacidad smallint unsigned not null,
+    valor DECIMAL (6,2) NOT null,
     primary key (numEntrada, idProyeccion,numSala),
     constraint fk_Entrada_Sala foreign key (numSala)
         references CINE.Sala (numSala),
