@@ -56,7 +56,7 @@ END %%
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS venderEntrada $$
-CREATE PROCEDURE venderEntrada (in unidProyeccion smallint unsigned, in unidCliente smallint unsigned, in numEntrada int not null)  
+CREATE PROCEDURE venderEntrada (in unidProyeccion smallint unsigned, in unidCliente smallint unsigned)  
 
 BEGIN
 
@@ -67,15 +67,9 @@ BEGIN
         SELECT count(*)+1 into valor
         FROM entrada
         WHERE idProyeccion = unidProyeccion;
-        AND idCliente = unidCliente
-        WHERE IF EXISTS (
-            SELECT *
-            FROM Proyeccion
-            where idProyeccion = unidProyeccion) then
-            update Proyeccion
-            set valor = valor + 1
-            where idProyeccion = unidProyeccion
-            and idCliente = unidCliente
+        
+        INSERT INTO Entrada (numEntrada, idProyeccion, idcliente)
+                    VALUES  (valor, unidProyeccion, unidCliente);
 
 end $$
 

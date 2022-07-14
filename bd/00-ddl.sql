@@ -50,8 +50,7 @@ CREATE TABLE CINE.Proyeccion(
 CREATE TABLE  CINE.Entrada(
     numEntrada int not null,
     idProyeccion smallint unsigned not null,
-    idCliente smallint unsigned not null,
-    numSala tinyint unsigned not null,
+    idCliente smallint unsigned not null,    
     capacidad smallint unsigned not null,
     valor DECIMAL (6,2) NOT null,
     primary key (numEntrada, idProyeccion,numSala),
