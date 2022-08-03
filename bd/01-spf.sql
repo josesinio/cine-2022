@@ -1,12 +1,14 @@
 -- Primer ejercicio de STORED PROCEDURE 01-SPF.SQL
 -- Se pide hacer los SP para dar de alta todas las entidades (menos Entrada y Cliente) con el prefijo ‘alta’.
+USE CINE;
+
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaGenero $$
 CREATE PROCEDURE altaGenero ( in unidGenero tinyint unsigned, in ungenero varchar(45))
 BEGIN
 
             INSERT INTO Genero (idGenero , genero)
-                VALUES (unidGenero, ungenero)
+                VALUES (unidGenero, ungenero);
 
 END $$
 
@@ -16,7 +18,7 @@ CREATE PROCEDURE altaSala (in unnumSala tinyint unsigned, in unpiso tinyint unsi
 BEGIN 
 
             INSERT  INTO Sala (numSala, piso, capacidad)
-                VALUES (unnumSala, unpiso, unacapacidad)
+                VALUES (unnumSala, unpiso, unacapacidad);
 
 END $$
 
@@ -26,7 +28,7 @@ CREATE PROCEDURE altaPelicula (in unidPelicula smallint unsigned, in unnombre va
 BEGIN 
 
             INSERT INTO Pelicula ( idPelicula, nombre, estreno,idGenero)
-                    VALUES (unidPelicula, unnombre,unestreno, unidGenero)
+                    VALUES (unidPelicula, unnombre,unestreno, unidGenero);
 
 END $$
 
@@ -36,18 +38,18 @@ CREATE PROCEDURE altaProyeccion (in unidProyeccion smallint unsigned, in unafech
 BEGIN 
 
             INSERT INTO Proyeccion (idProyeccion, fechahora, idPelicula, numSala)
-                VALUES (unidProyeccion, unafechaHora, unidPelicula, unnumSala)
+                VALUES (unidProyeccion, unafechaHora, unidPelicula, unnumSala);
 
-END
+END $$
 
 -- Segundo ejercicio de STORED PROCEDURE 01-SPF.SQL
 -- Se pide hacer el SP ‘registrarCliente’ que reciba los datos del cliente. Es importante guardar encriptada la contraseña del cliente usando SHA256.
 DELIMITER %% 
 DROP PROCEDURE IF EXISTS registrarCliente %% 
-CREATE PROCEDURE registrarCliente (unidCliente INT, unEmail VARCHAR (45), unNombre VARCHAR (45), unApellido VARCHAR (45), unaClave CHAR(64), unNumEntrada INT)
+CREATE PROCEDURE registrarCliente (unidCliente INT, unEmail VARCHAR (45), unNombre VARCHAR (45), unApellido VARCHAR (45), unaClave CHAR(64))
 BEGIN
-    INSERT INTO Cliente (idCliente, Email, Nombre, Apellido, Clave, NumEntrada)
-        VALUES (unidCliente, unEmail, unNombre, unApellido, SHA256 (unaClave, 256), unNumEntrada)
+    INSERT INTO Cliente (idCliente, Email, Nombre, Apellido, Clave)
+        VALUES (unidCliente, unEmail, unNombre, unApellido, SHA2(unaClave, 256));
 END %% 
 
 -- Tercer ejercicio de STORED PROCEDURE 01-SPF.SQL
@@ -56,20 +58,21 @@ END %%
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS venderEntrada $$
-CREATE PROCEDURE venderEntrada (in unidProyeccion smallint unsigned, in unidCliente smallint unsigned)  
+CREATE PROCEDURE venderEntrada (in unvalor decimal(6,2),in unidProyeccion smallint unsigned, in unidCliente smallint unsigned)  
 
 BEGIN
 
         -- 1 ) declarar var para id, se asigna como la cantidad de entradas para esa func + 1.
         -- 2 ) usar ese id para el nro de entrada. 
-        declare valor int;
-
+        
+        declare valor int default  0;
+		
         SELECT count(*)+1 into valor
         FROM entrada
         WHERE idProyeccion = unidProyeccion;
         
-        INSERT INTO Entrada (numEntrada, idProyeccion, idcliente)
-                    VALUES  (valor, unidProyeccion, unidCliente);
+        INSERT INTO Entrada (valor, idProyeccion, idcliente) 
+                    VALUES  (unvalor, unidProyeccion, unidCliente);
 
 end $$
 
@@ -86,21 +89,22 @@ begin
     WHERE fechahora BETWEEN unMenorFecha 
     AND unMayorFecha
     GROUP BY p.idPelicula
-    ORDER BY COUNT(*) DESC
+    ORDER BY COUNT(*) DESC;
 end%% 
 
 -- Realizar el SF llamado ‘RecaudacionPara’ que reciba por parámetro un identificador de película y 2 fechas, la función tiene que retornar la recaudación de la película entre esas 2 fechas.
 
 DELIMITER $$
 DROP FUNCTION IF EXISTS  RecaudacionPara $$
-CREATE FUNCTION RecaudacionPara ( idPelicula smallint unsigned, inicio datetime ,fin datetime)
+CREATE FUNCTION RecaudacionPara ( unidPelicula smallint unsigned, inicio datetime ,fin datetime) returns decimal(12,2) reads sql data 
 begin 
 
-    declare recaudacion int;
+    declare recaudacion decimal(12,2);
     SELECT SUM(valor) into recaudacion
     from proyeccion 
     join entrada USING (idproyeccion)
-    WHERE idpelicula = unidpelicula 
-    and fechaHora BETWEEN (inicio , fin)
-
+    WHERE idPelicula = unidPelicula 
+    and fechaHora BETWEEN inicio and fin;
+	return recaudacion;
 end $$
+    

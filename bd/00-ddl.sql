@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS CINE;
 CREATE DATABASE CINE;
-
+ 
 CREATE TABLE CINE.Genero(
     idGenero tinyint unsigned not null,
     genero varchar(45) not null,
@@ -26,7 +26,7 @@ CREATE TABLE CINE.Pelicula(
 
 CREATE TABLE CINE.Cliente(
     idCliente smallint unsigned not null,
-    email int not null,
+    email varchar (45) not null,
     nombre varchar (45) not null,
     apellido varchar (45) not null,
     clave char(64) not null,
@@ -50,12 +50,9 @@ CREATE TABLE CINE.Proyeccion(
 CREATE TABLE  CINE.Entrada(
     numEntrada int not null,
     idProyeccion smallint unsigned not null,
-    idCliente smallint unsigned not null,    
-    capacidad smallint unsigned not null,
+    idCliente smallint unsigned not null,
     valor DECIMAL (6,2) NOT null,
-    primary key (numEntrada, idProyeccion,numSala),
-    constraint fk_Entrada_Sala foreign key (numSala)
-        references CINE.Sala (numSala),
+    primary key (numEntrada, idProyeccion),
     constraint fk_Entrada_Proyeccion  foreign key (idProyeccion)
         references CINE.Proyeccion (idProyeccion),
     constraint fk_Entrada_Cliente foreign key (idCliente)
