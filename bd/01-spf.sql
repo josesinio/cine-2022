@@ -65,14 +65,14 @@ BEGIN
         -- 1 ) declarar var para id, se asigna como la cantidad de entradas para esa func + 1.
         -- 2 ) usar ese id para el nro de entrada. 
         
-        declare valor int default  0;
+        declare num int default  0;
 		
-        SELECT count(*)+1 into valor
+        SELECT count(*)+1 into num
         FROM entrada
         WHERE idProyeccion = unidProyeccion;
         
-        INSERT INTO Entrada (valor, idProyeccion, idcliente) 
-                    VALUES  (unvalor, unidProyeccion, unidCliente);
+        INSERT INTO Entrada (numEntrada,valor, idProyeccion, idcliente) 
+                    VALUES  (num,unvalor, unidProyeccion, unidCliente);
 
 end $$
 
