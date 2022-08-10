@@ -35,7 +35,7 @@ CREATE TABLE CINE.Cliente(
 );
 
 CREATE TABLE CINE.Proyeccion(
-    idProyeccion smallint unsigned not null,
+    idProyeccion smallint unsigned not null auto_increment,
     fechaHora datetime not null,
     idPelicula smallint unsigned not null,
     numSala tinyint unsigned not null,

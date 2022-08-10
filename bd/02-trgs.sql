@@ -15,3 +15,11 @@ begin
 				end if;
 end $$ 
 -- Realizar un trigger para que cada vez que se da de alta una película nueva, se crea una proyección por cada sala y para la fecha y hora de creación.
+DELIMITER $$
+DROP TRIGGER IF EXISTS aftInsPelicula $$
+CREATE TRIGGER afInsPelicula AFTER INSERT ON Pelicula FOR EACH ROW
+BEGIN
+INSERT INTO Proyeccion(fechaHora, idPelicula, numSala)
+    SELECT now(), new.idPelicula, numSala
+    FROM Sala;
+end $$
