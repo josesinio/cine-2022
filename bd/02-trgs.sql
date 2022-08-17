@@ -5,22 +5,30 @@ drop trigger if exists  BefInsEntrada //
 CREATE TRIGGER BefInsEntrada BEFORE INSERT ON Entrada For Each row 
 begin 
 	DECLARE cantidadEntradas TINYINT; 
+    declare cantidadButacas smallint unsigned;
+    
     Select COUNT(numEntrada) Into cantidadEntradas
     from Entrada 
     join Proyeccion Using (idProyeccion) 
     WHERE idProyeccion = new.idProyeccion;
+	
+    select count(capacidad) into cantidadButacas
+    from Sala
+    join  Proyeccion Using (idProyeccion)
+    where idProyeccion = new.idProyeccion;
     
-    IF (capacidad <= cantidadEntradas) then 
+    IF (cantidadButacas <= cantidadEntradas) then 
     signal sqlstate "45000"
 	set message_text = "La sala esta llena";
     end if;
+    
 end //
 
- 
+
 -- Realizar un trigger para que cada vez que se da de alta una película nueva, se crea una proyección por cada sala y para la fecha y hora de creación.
 DELIMITER $$
 DROP TRIGGER IF EXISTS aftInsPelicula $$
-CREATE TRIGGER afInsPelicula AFTER INSERT ON Pelicula FOR EACH ROW
+CREATE TRIGGER aftInsPelicula AFTER INSERT ON Pelicula FOR EACH ROW
 BEGIN
 INSERT INTO Proyeccion(fechaHora, idPelicula, numSala)
     SELECT now(), new.idPelicula, numSala
