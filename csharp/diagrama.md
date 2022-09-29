@@ -2,8 +2,10 @@
     classDiagram
     
         Pelicula o-- Genero
-        Cliente o-- Entrada
-    
+        Cliente *-- "0..n" Entrada
+        Sala o-- Pelicula
+         
+
         class Genero{
             idGenero
             Genero
