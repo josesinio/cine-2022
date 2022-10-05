@@ -1,47 +1,64 @@
 ```mermaid
     classDiagram
-    
+    direction LR
         Pelicula o-- Genero
         Cliente *-- "0..n" Entrada
         Sala o-- Pelicula
-         
+        Proyeccion *-- Sala
+        Proyeccion *-- Pelicula
+        Entrada *-- Proyeccion
+        Cliente <|--  Ententrada
+        Proyeccion  <|-- Ententrada
+
 
         class Genero{
-            idGenero
-            Genero
+            idGenero: int
+            genero: string
         }
     
         class Sala{
-            NumSala
-            Piso
-            Capacidad
+            numSala: int
+            piso: int
+            capacidad: int
+            +AgregarProyeccion(Proyeccion) void
+            +AgregarPelicula(Pelicula) void
+            +EliminarProyeccion(Proyeccion) void
+            +EliminarPelicula(Pelicula) void
+        }
+
+        class Ententrada {
+            +AgregarEntrada(Entrada) void
         }
     
         class Pelicula{
-            Id
-            Nombre
-            Estreno
-            IdGenero
+            idPelicula: int
+            nombre: string
+            estreno: datetime
+            genero: Genero
         }
     
         class Cliente{
-            IdCliente
-            Email
-            Nombre
-            Clave
+            idCliente: int
+            email: string
+            nombre: string
+            apeliido: string
+            clave: string
+            +AgregarEntrada(Entrada) void
         }
     
         class Proyeccion{
-            IdProyeccion
-            FechaHora
-            IdPelicula
-            NumSala
+            idProyeccion: int
+            fechaHora: DateTime
+            pelicula: Pelicula
+            sala: Sala            
         }
     
         class Entrada{
-            NumEntrada
-            IdProyeccion
-            IdCliente
-            Valor
+            numEntrada: int
+            proyeccion: Proyeccion
+            cliente: Cliente
+            sala: Sala
+            capacidad: ushort
+            valor: float
         }
 ```
