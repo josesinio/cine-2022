@@ -26,7 +26,7 @@
             +EliminarPelicula(Pelicula) void
         }
 
-        class Ententrada {
+        class Entrada {
             +AgregarEntrada(Entrada) void
         }
     

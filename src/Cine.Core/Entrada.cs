@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace csharp
+namespace Cine.Core
 {
     public class Entrada
     {
@@ -25,3 +25,4 @@ namespace csharp
         }
 
     }
+}
