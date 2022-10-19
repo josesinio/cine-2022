@@ -4,7 +4,7 @@ USE CINE;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaGenero $$
-CREATE PROCEDURE altaGenero ( in unidGenero tinyint unsigned, in ungenero varchar(45))
+CREATE PROCEDURE altaGenero ( OUT unidGenero tinyint unsigned, in ungenero varchar(45))
 BEGIN
 
             INSERT INTO Genero (idGenero , genero)
@@ -14,7 +14,7 @@ END $$
 
 DELIMITER $$ 
 DROP PROCEDURE IF EXISTS altaSala $$
-CREATE PROCEDURE altaSala (in unnumSala tinyint unsigned, in unpiso tinyint unsigned, in unacapacidad smallint unsigned)
+CREATE PROCEDURE altaSala (OUT unnumSala tinyint unsigned, in unpiso tinyint unsigned, in unacapacidad smallint unsigned)
 BEGIN 
 
             INSERT  INTO Sala (numSala, piso, capacidad)
@@ -24,7 +24,7 @@ END $$
 
 DELIMITER $$ 
 DROP PROCEDURE IF EXISTS altaPelicula $$
-CREATE PROCEDURE altaPelicula (in unidPelicula smallint unsigned, in unnombre varchar(45), in unestreno date, in unidGenero tinyint unsigned)
+CREATE PROCEDURE altaPelicula (OUT unidPelicula smallint unsigned, in unnombre varchar(45), in unestreno date, in unidGenero tinyint unsigned)
 BEGIN 
 
             INSERT INTO Pelicula ( idPelicula, nombre, estreno,idGenero)
@@ -34,7 +34,7 @@ END $$
 
 DELIMITER $$
 DROP PRoCEDURE IF EXISTS altaProyeccion $$
-CREATE PROCEDURE altaProyeccion (in unidProyeccion smallint unsigned, in unafechaHora datetime, in unidPelicula smallint unsigned, in unnumSala tinyint unsigned)
+CREATE PROCEDURE altaProyeccion (OUT unidProyeccion smallint unsigned, in unafechaHora datetime, in unidPelicula smallint unsigned, in unnumSala tinyint unsigned)
 BEGIN 
 
             INSERT INTO Proyeccion (idProyeccion, fechahora, idPelicula, numSala)
@@ -46,7 +46,7 @@ END $$
 -- Se pide hacer el SP ‘registrarCliente’ que reciba los datos del cliente. Es importante guardar encriptada la contraseña del cliente usando SHA256.
 DELIMITER %% 
 DROP PROCEDURE IF EXISTS registrarCliente %% 
-CREATE PROCEDURE registrarCliente (unidCliente INT, unEmail VARCHAR (45), unNombre VARCHAR (45), unApellido VARCHAR (45), unaClave CHAR(64))
+CREATE PROCEDURE registrarCliente (OUT unidCliente INT, unEmail VARCHAR (45), unNombre VARCHAR (45), unApellido VARCHAR (45), unaClave CHAR(64))
 BEGIN
     INSERT INTO Cliente (idCliente, Email, Nombre, Apellido, Clave)
         VALUES (unidCliente, unEmail, unNombre, unApellido, SHA2(unaClave, 256));
@@ -58,7 +58,7 @@ END %%
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS venderEntrada $$
-CREATE PROCEDURE venderEntrada (in unvalor decimal(6,2),in unidProyeccion smallint unsigned, in unidCliente smallint unsigned)  
+CREATE PROCEDURE venderEntrada (OUT unvalor decimal(6,2),in unidProyeccion smallint unsigned, in unidCliente smallint unsigned)  
 
 BEGIN
 
