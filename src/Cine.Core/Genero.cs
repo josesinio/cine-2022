@@ -2,7 +2,16 @@ namespace Cine.Core
 {
     public class Genero
     {
-        public int Id {get; set;}
-        public int genero {get; set;}
+        public Guid Id {get; set;}
+        public string? genero {get; set;}
+    
+
+    public  Genero(Guid id, string? genero)
+        {
+        this.Id = id;
+        this.genero = genero;
+        }
+
+
     }
 }

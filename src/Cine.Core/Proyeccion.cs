@@ -7,18 +7,17 @@ namespace Cine.Core
 {
     public class Proyeccion
     {
-        public int Id {get; set;}
+        public Guid Id {get; set;}
         public DateTime FechaHora {get; set;}
-        public Pelicula Pelicula {get; set;}
-        public Sala Sala {get; set;}
-    }
+        public Pelicula pelicula {get; set;} = null!;
+        public Sala sala {get; set;} = null!;
 
-    public void  Proyeccion (int id, DateTime FechaHora)
-    { 
-        this.id = id;
+        public Proyeccion(Guid Id, DateTime FechaHora)
+        { 
+        this.Id = Id;
         this.FechaHora = FechaHora;
-
-
+        
+        }
     }
 
 }
