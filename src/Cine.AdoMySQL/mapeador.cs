@@ -25,13 +25,13 @@ public class MapGenero : Mapeador<Genero>
         SetComandoSP("altaGenero");
 
         BP.CrearParametroSalida("unId")
-          .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UByte)
-          .AgregarParametro();
+        .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UByte)
+        .AgregarParametro();
 
         BP.CrearParametro("unNombre")
-          .SetTipoVarchar(45)
-          .SetValor(genero.Nombre)
-          .AgregarParametro();
+        .SetTipoVarchar(45)
+        .SetValor(genero.Nombre)
+        .AgregarParametro();
     }
 
     public void PostAltaGenero(Genero genero)
@@ -45,9 +45,9 @@ public class MapGenero : Mapeador<Genero>
         SetComandoSP("GeneroPorId");
 
         BP.CrearParametro("unId")
-          .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UByte)
-          .SetValor(id)
-          .AgregarParametro();
+        .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UByte)
+        .SetValor(id)
+        .AgregarParametro();
 
         return ElementoDesdeSP();
     }

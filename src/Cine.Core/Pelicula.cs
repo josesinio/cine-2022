@@ -2,17 +2,17 @@ namespace Cine.Core
 {
     public class Pelicula
     {
-        public Guid Id { get; set; }
+        public byte Id { get; set; }
         public string Nombre { get; set; }
         public DateTime Estreno { get; set; }
         public Genero Genero { get; set; }
 
-        public Pelicula(Guid id, string Nombre, DateTime Estreno, Genero genero)
+        public Pelicula(byte id, string nombre, DateTime estreno, Genero genero)
         {
             this.Id = id;
-            this.Nombre = Nombre;
-            this.Estreno = Estreno;
-            this.Genero = Genero;
+            this.Nombre = nombre;
+            this.Estreno = estreno;
+            this.Genero = genero;
         }
     }
 }

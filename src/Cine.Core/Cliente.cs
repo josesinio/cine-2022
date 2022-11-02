@@ -2,20 +2,20 @@ namespace Cine.Core;
 
 public class Cliente
 {
-    public Guid Id { get; set; }
+    public byte Id { get; set; }
     public string Email { get; set; }
     public string Nombre { get; set; }
     public string Apellido { get; set; }
     public string Clave { get; set; }
     public List<Entrada> entradas { get; set; }
 
-    public Cliente(Guid Id, string Email, string Nombre, string Apellido, string Clave)
+    public Cliente(byte id, string email, string nombre, string apellido, string clave)
     {
-        this.Id = Id;
-        this.Email = Email;
-        this.Nombre = Nombre;
-        this.Apellido = Apellido;
-        this.Clave = Clave;
+        this.Id = id;
+        this.Email = email;
+        this.Nombre = nombre;
+        this.Apellido = apellido;
+        this.Clave = clave;
         this.entradas = new List<Entrada>();
 
     }
