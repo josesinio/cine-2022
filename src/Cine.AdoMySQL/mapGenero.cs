@@ -11,7 +11,12 @@ public class MapGenero : Mapeador<Genero>
         Tabla = "Genero";
     }
     public override Genero ObjetoDesdeFila(DataRow fila)
-            => new Genero()
+            => new Genero
+            (
+                Id: Convert.ToByte(fila["idGenero"]),
+                Nombre: fila["Nombre"].ToString()
+            )
+
             {
                 Id = Convert.ToByte(fila["idGenero"]),
                 Nombre = fila["Nombre"].ToString()
@@ -25,10 +30,10 @@ public class MapGenero : Mapeador<Genero>
         SetComandoSP("altaGenero");
 
         BP.CrearParametroSalida("unId")
-        .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UByte)
+        .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
         .AgregarParametro();
 
-        BP.CrearParametro("unNombre")
+        BP.CrearParametroSalida("unNombre")
         .SetTipoVarchar(45)
         .SetValor(genero.Nombre)
         .AgregarParametro();
