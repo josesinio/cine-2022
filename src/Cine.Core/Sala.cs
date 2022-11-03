@@ -10,11 +10,11 @@ public class Sala
 
     public List<Pelicula> peliculas { get; set; }
 
-    public Sala(byte numSala, byte piso, int capacidad)
+    public Sala(byte NumSala, byte Piso, int Capacidad)
     {
-        this.NumSala = numSala;
-        this.Piso = piso;
-        this.Capacidad = capacidad;
+        this.NumSala = NumSala;
+        this.Piso = Piso;
+        this.Capacidad = Capacidad;
         this.proyecciones = new List<Proyeccion>();
         this.peliculas = new List<Pelicula>();
     }
@@ -22,9 +22,9 @@ public class Sala
 
     public void agregarPelicula(Pelicula pelicula) => this.peliculas.Add(pelicula);
 
-    public void EliminarProyeccion(Guid Id)
+    public void EliminarProyeccion(byte Id)
     {
-        var peli = this.peliculas.SingleOrDefault(x => x.numSala ==  NumSala);
+        var peli = this.peliculas.SingleOrDefault(x => x.Id == Id);
         if (peli is null)
             throw new Exception($"No existe esta pelicula{Id}.");
 
