@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cine.Core", "Cine.Core\Cine
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cine.AdoMySQL", "Cine.AdoMySQL\Cine.AdoMySQL.csproj", "{87539187-8FB1-4658-8DFA-667193E44D2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneroTest", "GeneroTest\GeneroTest.csproj", "{FD3D708F-256C-44EA-A275-6C1F361D58A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cine.AdoMySQL.Test", "Cine.AdoMySQL.Test\Cine.AdoMySQL.Test.csproj", "{675FC230-B0DA-4074-9A4D-6379441E2BDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,9 +26,9 @@ Global
 		{87539187-8FB1-4658-8DFA-667193E44D2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87539187-8FB1-4658-8DFA-667193E44D2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87539187-8FB1-4658-8DFA-667193E44D2C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD3D708F-256C-44EA-A275-6C1F361D58A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD3D708F-256C-44EA-A275-6C1F361D58A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD3D708F-256C-44EA-A275-6C1F361D58A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD3D708F-256C-44EA-A275-6C1F361D58A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{675FC230-B0DA-4074-9A4D-6379441E2BDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{675FC230-B0DA-4074-9A4D-6379441E2BDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{675FC230-B0DA-4074-9A4D-6379441E2BDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{675FC230-B0DA-4074-9A4D-6379441E2BDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

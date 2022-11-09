@@ -7,11 +7,11 @@ namespace Cine.Core
         public Pelicula pelicula { get; set; } = null!;
         public Sala sala { get; set; } = null!;
 
-        public Proyeccion(ushort Id, DateTime FechaHora)
+        public Proyeccion(ushort Id, DateTime FechaHora, Sala sala)
         {
             this.Id = Id;
             this.FechaHora = FechaHora;
-
+            this.sala = sala;
         }
     }
 

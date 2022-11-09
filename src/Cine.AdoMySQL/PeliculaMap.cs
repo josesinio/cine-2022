@@ -10,21 +10,23 @@ public class PeliculaMap : Mapeador<Pelicula>
     public MapGenero mapGenero { set; get; }
     public PeliculaMap(AdoAGBD ado) : base(ado) => Tabla = "Pelicula";
 
-    public PeliculaMap(MapGenero mapGenero) : this(mapGenero.AdoAGBD) => MapGenero = mapGenero;
-
+    public PeliculaMap(MapGenero mapGenero) : this(mapGenero.AdoAGBD)
+    {
+        MapGenero = mapGenero;
+    }
     public override Pelicula ObjetoDesdeFila(DataRow fila)
     => new Pelicula
     (
-        Id: Convert.ToUInt16(fila["Id"]),
-        Nombre: fila["Nombre"].ToString(),
-        Estreno: Convert.ToDateTime(fila["Estreno"]),
-        Genero: Convert.ToByte(fila["Genero"])
+        id: Convert.ToUInt16(fila["Id"]),
+        nombre: fila["Nombre"].ToString(),
+        estreno: Convert.ToDateTime(fila["Estreno"]),
+        genero: Convert.ToByte(fila["Genero"])
     )
     {
-        Id = Convert.ToUInt16(fila["Id"]),
-        Nombre = fila["Nombre"].ToString(),
-        Estreno = Convert.ToDateTime(fila["Estreno"]),
-        Genero =
+        id = Convert.ToUInt16(fila["Id"]),
+        nombre = fila["Nombre"].ToString(),
+        estreno = Convert.ToDateTime(fila["Estreno"]),
+        genero = Convert.ToByte(fila["Genero"])
 
     };
     public void AltaPelicula(Pelicula pelicula)
@@ -40,7 +42,7 @@ public class PeliculaMap : Mapeador<Pelicula>
 
         BP.CrearParametroSalida("unNombre")
         .SetTipoVarchar(45)
-        .SetValor(pelicula.Nombre)
+        .SetValor(pelicula.nombre)
         .AgregarParametro();
 
         BP.CrearParametroSalida("unEstreno")
@@ -55,14 +57,14 @@ public class PeliculaMap : Mapeador<Pelicula>
     public void PosAltaPelicula(Pelicula pelicula)
     {
         var paramIdPelicula = GetParametro("unIdPelicula");
-        pelicula.Id = Convert.ToUInt16(paramIdPelicula.Value);
+        pelicula.id = Convert.ToUInt16(paramIdPelicula.Value);
     }
-    public Pelicula PeliculaPorId(ushort Id)
+    public Pelicula PeliculaPorId(ushort id)
     {
         SetComandoSP("PeliculaPorId");
         BP.CrearParametro("unIdPelicula")
         .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Int16)
-        .SetValor(Id)
+        .SetValor(id)
         .AgregarParametro();
 
         return ElementoDesdeSP();

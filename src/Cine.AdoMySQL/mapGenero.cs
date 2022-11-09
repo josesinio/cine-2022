@@ -1,8 +1,7 @@
-﻿using et12.edu.ar.AGBD.Mapeadores;
-using et12.edu.ar.AGBD.Ado;
-using System.Data;
+﻿using System.Data;
 using Cine.Core;
-
+using et12.edu.ar.AGBD.Ado;
+using et12.edu.ar.AGBD.Mapeadores;
 namespace Cine.AdoMySQL.Mapeadores;
 public class MapGenero : Mapeador<Genero>
 {
@@ -56,5 +55,9 @@ public class MapGenero : Mapeador<Genero>
 
         return ElementoDesdeSP();
     }
-    public List<Genero> ObtenerGenero() => ColeccionDesdeTabla();
+
+    public List<Genero> ObtenerGenero(Genero genero)
+{
+    return FilasFiltradas("idGenero", genero.Id);
+}
 }
