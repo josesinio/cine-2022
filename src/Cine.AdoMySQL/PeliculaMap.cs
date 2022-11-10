@@ -70,4 +70,5 @@ public class PeliculaMap : Mapeador<Pelicula>
         return ElementoDesdeSP();
     }
     public List<Pelicula> obtenerPeliculas() => ColeccionDesdeTabla();
+    
 }
