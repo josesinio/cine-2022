@@ -14,13 +14,7 @@ public class MapGenero : Mapeador<Genero>
             (
                 Id: Convert.ToByte(fila["idGenero"]),
                 Nombre: fila["Nombre"].ToString()
-            )
-
-            {
-                Id = Convert.ToByte(fila["idGenero"]),
-                Nombre = fila["Nombre"].ToString()
-            };
-
+            );
     public void AltaGenero(Genero genero)
             => EjecutarComandoCon("altaGenero", ConfigurarAltaGenero, PostAltaGenero, genero);
 
@@ -49,7 +43,7 @@ public class MapGenero : Mapeador<Genero>
         SetComandoSP("GeneroPorId");
 
         BP.CrearParametro("unId")
-        .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UByte)
+        .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
         .SetValor(id)
         .AgregarParametro();
 
@@ -57,7 +51,7 @@ public class MapGenero : Mapeador<Genero>
     }
 
     public List<Genero> ObtenerGenero(Genero genero)
-{
-    return FilasFiltradas("idGenero", genero.Id);
-}
+    {
+        return FilasFiltradas("idGenero", genero.Id);
+    }
 }
