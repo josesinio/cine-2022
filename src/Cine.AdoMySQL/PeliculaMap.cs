@@ -7,28 +7,22 @@ namespace Cine.AdoMySQL.Mapeadores;
 
 public class PeliculaMap : Mapeador<Pelicula>
 {
-    public MapGenero mapGenero { set; get; }
+    public MapGenero mapGenero { get; set; }
     public PeliculaMap(AdoAGBD ado) : base(ado) => Tabla = "Pelicula";
 
     public PeliculaMap(MapGenero mapGenero) : this(mapGenero.AdoAGBD)
-    {
-        MapGenero = mapGenero;
-    }
+    => MapGenero = mapGenero;
+
     public override Pelicula ObjetoDesdeFila(DataRow fila)
     => new Pelicula
     (
         id: Convert.ToUInt16(fila["Id"]),
         nombre: fila["Nombre"].ToString(),
         estreno: Convert.ToDateTime(fila["Estreno"]),
-        genero: Convert.ToByte(fila["Genero"])
-    )
-    {
-        id = Convert.ToUInt16(fila["Id"]),
-        nombre = fila["Nombre"].ToString(),
-        estreno = Convert.ToDateTime(fila["Estreno"]),
-        genero = Convert.ToByte(fila["Genero"])
+        genero: mapGenero.GeneroPorId(Convert.ToByte(fila["Genero"]))
+    );
 
-    };
+
     public void AltaPelicula(Pelicula pelicula)
     => EjecutarComandoCon("altaPelicula", ConfigurarAltaPelicula, PosAltaPelicula, pelicula);
 
