@@ -7,7 +7,7 @@ namespace Cine.AdoMySQL.Mapeadores;
 
 public class PeliculaMap : Mapeador<Pelicula>
 {
-    public MapGenero mapGenero { get; set; }
+    public MapGenero MapGenero { get; set; }
     public PeliculaMap(AdoAGBD ado) : base(ado) => Tabla = "Pelicula";
 
     public PeliculaMap(MapGenero mapGenero) : this(mapGenero.AdoAGBD)
@@ -19,7 +19,7 @@ public class PeliculaMap : Mapeador<Pelicula>
         id: Convert.ToUInt16(fila["Id"]),
         nombre: fila["Nombre"].ToString(),
         estreno: Convert.ToDateTime(fila["Estreno"]),
-        genero: mapGenero.GeneroPorId(Convert.ToByte(fila["Genero"]))
+        genero: MapGenero.GeneroPorId(Convert.ToByte(fila["Genero"]))
     );
 
 
