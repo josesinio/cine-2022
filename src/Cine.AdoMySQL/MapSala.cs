@@ -55,9 +55,9 @@ public class MapSala : Mapeador<Sala>
         SetComandoSP("SalaPorId");
 
         BP.CrearParametro("unNumSala")
-          .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
-          .SetValor(NumSala)
-          .AgregarParametro();
+        .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
+        .SetValor(NumSala)
+        .AgregarParametro();
 
         return ElementoDesdeSP();
     }

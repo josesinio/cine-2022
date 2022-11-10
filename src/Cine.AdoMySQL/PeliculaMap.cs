@@ -12,21 +12,21 @@ public class PeliculaMap : Mapeador<Pelicula>
 
     public PeliculaMap(MapGenero mapGenero) : this(mapGenero.AdoAGBD)
     {
-        MapGenero = mapGenero;
+        mapGenero = mapGenero;
     }
     public override Pelicula ObjetoDesdeFila(DataRow fila)
     => new Pelicula
     (
-        id: Convert.ToUInt16(fila["Id"]),
+        id: Convert.ToUInt16(fila["id"]),
         nombre: fila["Nombre"].ToString(),
         estreno: Convert.ToDateTime(fila["Estreno"]),
-        genero: Convert.ToByte(fila["Genero"])
+        genero: mapGenero.GeneroPorId(Convert.ToByte(fila["idGenero"]))
     )
     {
         id = Convert.ToUInt16(fila["Id"]),
         nombre = fila["Nombre"].ToString(),
         estreno = Convert.ToDateTime(fila["Estreno"]),
-        genero = Convert.ToByte(fila["Genero"])
+        genero = mapGenero.GeneroPorId(Convert.ToByte(fila["idGenero"]))
 
     };
     public void AltaPelicula(Pelicula pelicula)
