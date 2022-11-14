@@ -12,5 +12,21 @@ public class MapEntrada : Mapeador<Entrada>
     public MapEntrada(AdoAGBD ado) : base(ado) => Tabla = "Entrada";
     public MapEntrada(MapProyeccion mapProyeccion, MapSala mapSala, MapCliente mapCliente) : this(mapProyeccion.AdoAGBD)
     {
+
+    }
+    public MapProyeccion mapProyeccion { get; set; }
+    public MapSala mapSala { get; set; }
+    public MapEntrada(AdoAGBD ado) : base(ado) => Tabla = "Entrada";
+    public MapEntrada(MapProyeccion mapProyeccion, MapSala mapSala) : this(mapProyeccion.AdoAGBD)
+    {
+        MapProyeccion = mapProyeccion;
+        MapSala = mapSala;
+    }
+
+    public override Entrada ObjetoDesdeFila(DataRow fila)
+    {
+
+
     }
 }
+
