@@ -14,18 +14,11 @@ public class MapCliente : Mapeador<Cliente>
             => new Cliente
             (
                 id: Convert.ToByte(fila["idCliente"]),
-                email: fila["Email"].ToString(),
-                nombre: fila["Nombres"].ToString(),
-                apellido: fila["Apellido"].ToString(),
-                clave: fila["clave"].ToString()
-            )
-            {
-                id = Convert.ToByte(fila["idCliente"]),
-                email = fila["Email"].ToString(),
-                nombre = fila["Nombre"].ToString(),
-                apellido = fila["Apellido"].ToString(),
-                clave = fila["Clave"].ToString()
-            };
+                email: fila["Email"].ToString()!,
+                nombre: fila["Nombres"].ToString()!,
+                apellido: fila["Apellido"].ToString()!,
+                clave: fila["clave"].ToString()!
+            );
     public void AltaCliente(Cliente cliente)
             => EjecutarComandoCon("altaCliente", ConfigurarAltaCliente, PostAltaCliente, cliente);
 

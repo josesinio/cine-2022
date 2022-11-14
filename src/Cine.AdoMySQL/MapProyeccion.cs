@@ -11,7 +11,7 @@ public class MapProyeccion : Mapeador<Proyeccion>
     public MapProyeccion(AdoAGBD ado) : base(ado) => Tabla = "Proyeccion";
     public MapProyeccion(MapSala mapSala, PeliculaMap mapPelicula) : this(mapSala.AdoAGBD)
     {
-        MapSala = mapSala;
+        MapSala = MapSala;
         MapPelicula = MapPelicula;
     }
 

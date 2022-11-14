@@ -18,17 +18,10 @@ public class PeliculaMap : Mapeador<Pelicula>
     => new Pelicula
     (
         id: Convert.ToUInt16(fila["id"]),
-        nombre: fila["Nombre"].ToString(),
+        nombre: fila["Nombre"].ToString()!,
         estreno: Convert.ToDateTime(fila["Estreno"]),
         genero: mapGenero.GeneroPorId(Convert.ToByte(fila["idGenero"]))
-    )
-    {
-        id = Convert.ToUInt16(fila["Id"]),
-        nombre = fila["Nombre"].ToString(),
-        estreno = Convert.ToDateTime(fila["Estreno"]),
-        genero = mapGenero.GeneroPorId(Convert.ToByte(fila["idGenero"]))
-
-    };
+    );
     public void AltaPelicula(Pelicula pelicula)
     => EjecutarComandoCon("altaPelicula", ConfigurarAltaPelicula, PosAltaPelicula, pelicula);
 
