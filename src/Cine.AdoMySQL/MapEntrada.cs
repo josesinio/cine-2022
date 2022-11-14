@@ -53,7 +53,7 @@ namespace Cine.AdoMySQL.Mapeadores
 
             BP.CrearParametroSalida("unIdSala")
             .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
-            .SetValor(entrada.sala.numSala)
+            .SetValor(entrada.Sala.NumSala)
             .AgregarParametro();
 
             BP.CrearParametroSalida("Capacidad")

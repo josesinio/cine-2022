@@ -5,7 +5,7 @@ namespace Cine.Core
         public byte NumEntrada { get; set; }
         public Proyeccion Proyeccion { get; set; }
         public Cliente Cliente { get; set; }
-        public Sala NumSala { get; set; }
+        public Sala Sala { get; set; }
         public int Capacidad { get; set; }
         public float Valor { get; set; }
 
@@ -14,7 +14,7 @@ namespace Cine.Core
             this.NumEntrada = numEntrada;
             this.Proyeccion = proyeccion;
             this.Cliente = cliente;
-            this.NumSala = sala;
+            this.Sala = sala;
             this.Capacidad = capacidad;
             this.Valor = valor;
         }

@@ -11,8 +11,8 @@ public class MapProyeccion : Mapeador<Proyeccion>
     public MapProyeccion(AdoAGBD ado) : base(ado) => Tabla = "Proyeccion";
     public MapProyeccion(MapSala mapSala, PeliculaMap mapPelicula) : this(mapSala.AdoAGBD)
     {
-        MapSala = mapSala;
-        MapPelicula = mapPelicula;
+        MapSala = MapSala;
+        MapPelicula = MapPelicula;
     }
 
     public override Proyeccion ObjetoDesdeFila(DataRow fila)

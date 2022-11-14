@@ -13,7 +13,7 @@ public class MapGenero : Mapeador<Genero>
             => new Genero
             (
                 Id: Convert.ToByte(fila["idGenero"]),
-                Nombre: fila["Nombre"].ToString()
+                Nombre: fila["Nombre"].ToString()!
             );
     public void AltaGenero(Genero genero)
             => EjecutarComandoCon("altaGenero", ConfigurarAltaGenero, PostAltaGenero, genero);
@@ -28,7 +28,7 @@ public class MapGenero : Mapeador<Genero>
 
         BP.CrearParametroSalida("unNombre")
         .SetTipoVarchar(45)
-        .SetValor(genero.Nombre)
+        .SetValor(genero.Nombre!)
         .AgregarParametro();
     }
 

@@ -17,12 +17,7 @@ public class MapSala : Mapeador<Sala>
         NumSala: Convert.ToByte(fila["Id"]),
         Piso: Convert.ToByte(fila["Piso"]),
         Capacidad: Convert.ToInt32(fila["capacidad"])
-    )
-    {
-        NumSala = Convert.ToByte(fila["Id"]),
-        Piso = Convert.ToByte(fila["Piso"]),
-        Capacidad = Convert.ToInt32(fila["capacidad"])
-    };
+    );
     public void AltaSAla(Sala sala)
     => EjecutarComandoCon("altaSala", ConfigurarAltaSala, postAltaSala, sala);
 
