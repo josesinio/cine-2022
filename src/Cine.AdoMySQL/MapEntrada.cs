@@ -9,7 +9,7 @@ namespace Cine.AdoMySQL.Mapeadores
     {
         public MapProyeccion mapProyeccion { get; set; }
         public MapSala mapSala { get; set; }
-        public MapEntrada(AdoAGBD ado) : base(ado) => Tabla: "Entrada";
+        public MapEntrada(AdoAGBD ado) : base(ado) => Tabla = "Entrada";
         public MapEntrada(MapProyeccion mapProyeccion, MapSala mapSala) : this(mapProyeccion.AdoAGBD)
         {
             MapProyeccion = mapProyeccion;
