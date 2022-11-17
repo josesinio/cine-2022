@@ -16,7 +16,7 @@ public class PeliculaMap : Mapeador<Pelicula>
     public override Pelicula ObjetoDesdeFila(DataRow fila)
     => new Pelicula
     (
-        id: Convert.ToUInt16(fila["id"]),
+        idPelicula: Convert.ToUInt16(fila["id"]),
         nombre: fila["Nombre"].ToString()!,
         estreno: Convert.ToDateTime(fila["Estreno"]),
         genero: MapGenero.GeneroPorId(Convert.ToByte(fila["idGenero"]))
@@ -49,7 +49,7 @@ public class PeliculaMap : Mapeador<Pelicula>
     public void PosAltaPelicula(Pelicula pelicula)
     {
         var paramIdPelicula = GetParametro("unIdPelicula");
-        pelicula.id = Convert.ToUInt16(paramIdPelicula.Value);
+        pelicula.idPelcula = Convert.ToUInt16(paramIdPelicula.Value);
     }
     public Pelicula PeliculaPorId(ushort id)
     {

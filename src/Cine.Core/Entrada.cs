@@ -19,5 +19,7 @@ namespace Cine.Core
             this.Valor = valor;
         }
 
+
+
     }
 }

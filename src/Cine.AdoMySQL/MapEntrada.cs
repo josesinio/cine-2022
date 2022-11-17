@@ -21,7 +21,7 @@ namespace Cine.AdoMySQL.Mapeadores
         public override Entrada ObjetoDesdeFila(DataRow fila) => new Entrada
         (
             numEntrada: Convert.ToByte(fila["Id"]),
-            proyeccion: MapProyeccion.proyeccionesPorId(Convert.ToByte(fila["idProyeccion"])),
+            proyeccion: MapProyeccion.ProyeccionPorId(Convert.ToByte(fila["idProyeccion"])),
             cliente: MapCliente.ClientePorId(Convert.ToByte(fila["IdCliente"])),
             sala: MapSala.SalaPorId(Convert.ToByte(fila["IdSala"])),
             capacidad: Convert.ToInt32(fila["capacidad"]),

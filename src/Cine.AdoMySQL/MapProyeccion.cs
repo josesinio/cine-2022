@@ -8,11 +8,11 @@ public class MapProyeccion : Mapeador<Proyeccion>
 {
     public MapSala MapSala { get; set; }
     public PeliculaMap MapPelicula { get; set; }
-    public MapProyeccion(AdoAGBD ado) : base(ado) => Tabla = "Proyeccion";
-    public MapProyeccion(MapSala mapSala, PeliculaMap mapPelicula) : this(mapSala.AdoAGBD)
+    public MapProyeccion(MapSala mapSala, PeliculaMap mapPelicula) : base(mapSala.AdoAGBD)
     {
-        MapSala = MapSala;
-        MapPelicula = MapPelicula;
+        MapSala = mapSala;
+        MapPelicula = mapPelicula;
+        Tabla = "Proyeccion";
     }
 
     public override Proyeccion ObjetoDesdeFila(DataRow fila)
@@ -56,20 +56,13 @@ public class MapProyeccion : Mapeador<Proyeccion>
         proyeccion.id = Convert.ToByte(paramIdProyeccion.Value);
     }
 
-    public Proyeccion proyeccionesPorId(byte id)
+    public Proyeccion ProyeccionPorId(byte id)
     {
-        SetComandoSP("ProyeccionPorId");
-
-        BP.CrearParametro("unIdProyeccion")
-        .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
-        .SetValor("id")
-        .AgregarParametro();
-
-        return ElementoDesdeSP();
+        return FiltrarPorPK("idProyeccion", id)!;
     }
 
     public List<Proyeccion> ObtenerProyecciones(Pelicula pelicula)
     {
-        return FilasFiltradas("idPelicula", pelicula.id);
+        return FilasFiltradas("idPelicula", pelicula.idPelcula);
     }
 }
