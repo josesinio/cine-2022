@@ -1,5 +1,7 @@
 using Cine.AdoMySQL.Mapeadores;
 using Cine.Core;
+using et12.edu.ar.AGBD.Ado;
+
 namespace Cine.AdoMySQL.Test;
 
 public class GeneroTest
