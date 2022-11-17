@@ -1,5 +1,6 @@
 using et12.edu.ar.AGBD.Ado;
 using Cine.Core;
+
 namespace Cine.AdoMySQL.Mapeadores;
 
 public class AdoCine
@@ -13,4 +14,9 @@ public class AdoCine
     }
     public void AltaGenero(Genero genero) => MapGenero.AltaGenero(genero);
     public List<Genero> ObtenerGenero() => MapGenero.ColeccionDesdeTabla();
+
+    public void AltaCliente(Cliente cliente)
+    {
+        throw new NotImplementedException();
+    }
 }

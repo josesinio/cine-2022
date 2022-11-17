@@ -10,12 +10,12 @@ namespace Cine.AdoMySQL.Mapeadores
         public MapProyeccion MapProyeccion { get; set; }
         public MapSala MapSala { get; set; }
         public MapCliente MapCliente { get; set; }
-        public MapEntrada(AdoAGBD ado) : base(ado) => Tabla = "Entrada";
-        public MapEntrada(MapProyeccion mapProyeccion, MapSala mapSala, MapCliente mapCliente) : this(mapProyeccion.AdoAGBD)
+        public MapEntrada(MapProyeccion mapProyeccion, MapSala mapSala, MapCliente mapCliente) : base(mapProyeccion.AdoAGBD)
         {
             MapProyeccion = mapProyeccion;
             MapSala = mapSala;
             MapCliente = mapCliente;
+            Tabla = "Entrada";
         }
 
         public override Entrada ObjetoDesdeFila(DataRow fila) => new Entrada
@@ -70,16 +70,9 @@ namespace Cine.AdoMySQL.Mapeadores
             var paramIdEntrada = GetParametro("unIdEntrada");
             entrada.NumEntrada = Convert.ToByte(paramIdEntrada.Value);
         }
-        public Entrada EntradaPorId(byte numEntrada)
+        public Entrada? EntradaPorId(byte numEntrada)
         {
-            SetComandoSP("EntradaPorId");
-
-            BP.CrearParametro("unIdEntrada")
-              .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
-              .SetValor(numEntrada)
-              .AgregarParametro();
-
-            return ElementoDesdeSP();
+            return FiltrarPorPK("idEntrada", numEntrada);
         }
 
     }
