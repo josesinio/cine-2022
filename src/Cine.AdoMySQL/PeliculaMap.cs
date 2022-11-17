@@ -8,10 +8,10 @@ namespace Cine.AdoMySQL.Mapeadores;
 public class PeliculaMap : Mapeador<Pelicula>
 {
     public MapGenero MapGenero { set; get; }
-    public PeliculaMap(AdoAGBD ado) : base(ado) => Tabla = "Pelicula";
-    public PeliculaMap(MapGenero mapGenero) : this(mapGenero.AdoAGBD)
+    public PeliculaMap(MapGenero mapGenero) : base(mapGenero.AdoAGBD)
     {
         MapGenero = mapGenero;
+        Tabla = "Pelicula";
     }
     public override Pelicula ObjetoDesdeFila(DataRow fila)
     => new Pelicula
@@ -51,15 +51,9 @@ public class PeliculaMap : Mapeador<Pelicula>
         var paramIdPelicula = GetParametro("unIdPelicula");
         pelicula.idPelcula = Convert.ToUInt16(paramIdPelicula.Value);
     }
-    public Pelicula PeliculaPorId(ushort id)
+    public Pelicula? PeliculaPorId(ushort id)
     {
-        SetComandoSP("PeliculaPorId");
-        BP.CrearParametro("unIdPelicula")
-        .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Int16)
-        .SetValor(id)
-        .AgregarParametro();
-
-        return ElementoDesdeSP();
+        return FiltrarPorPK("idPelicula", id);
     }
     public List<Pelicula> obtenerPeliculas() => ColeccionDesdeTabla();
 }
