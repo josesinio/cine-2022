@@ -18,7 +18,7 @@ public class MapProyeccion : Mapeador<Proyeccion>
     => new Proyeccion(
         id: Convert.ToByte(fila["idProyeccion"]),
         fechaHora: Convert.ToDateTime(fila["Fechahora"]),
-        pelicula: PeliculaMap.PeliculaPorId(Convert.ToUInt16(fila["IdPelicula"])),
+        pelicula: MapPelicula.PeliculaPorId(Convert.ToUInt16(fila["IdPelicula"]))!,
         sala: MapSala.SalaPorId(Convert.ToByte(fila["numSala"]))
     );
 
