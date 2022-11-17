@@ -30,4 +30,9 @@ public class AdoCine
     {
         throw new NotImplementedException();
     }
+
+    public void ClientePorId(Cliente cliente)
+    {
+        throw new NotImplementedException();
+    }
 }

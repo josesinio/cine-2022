@@ -19,4 +19,12 @@ public class ClienteTest
         AdoCine?.AltaCliente(cliente);
         Assert.Equal(2, cliente.id);
     }
+
+    [Fact]
+    public void ClientePorId()
+    {
+        var cliente = new Cliente(101, "javiermereleQgmail.com", "Javier", "Merele", "946281");
+        AdoCine?.ClientePorId(cliente);
+        Assert.Equal(1, cliente.id);
+    }
 }
