@@ -1,6 +1,5 @@
 using System.Data;
 using Cine.Core;
-using et12.edu.ar.AGBD.Ado;
 using et12.edu.ar.AGBD.Mapeadores;
 
 namespace Cine.AdoMySQL.Mapeadores;
@@ -8,18 +7,18 @@ public class MapProyeccion : Mapeador<Proyeccion>
 {
     public MapSala MapSala { get; set; }
     public PeliculaMap MapPelicula { get; set; }
-    public MapProyeccion(AdoAGBD ado) : base(ado) => Tabla = "Proyeccion";
-    public MapProyeccion(MapSala mapSala, PeliculaMap mapPelicula) : this(mapSala.AdoAGBD)
+    public MapProyeccion(MapSala mapSala, PeliculaMap mapPelicula) : base(mapSala.AdoAGBD)
     {
-        MapSala = MapSala;
-        MapPelicula = MapPelicula;
+        MapSala = mapSala;
+        MapPelicula = mapPelicula;
+        Tabla = "Proyeccion";
     }
 
     public override Proyeccion ObjetoDesdeFila(DataRow fila)
     => new Proyeccion(
         id: Convert.ToByte(fila["idProyeccion"]),
         fechaHora: Convert.ToDateTime(fila["Fechahora"]),
-        pelicula: MapPelicula.PeliculaPorId(Convert.ToUInt16(fila["IdPelicula"])),
+        pelicula: MapPelicula.PeliculaPorId(Convert.ToUInt16(fila["IdPelicula"]))!,
         sala: MapSala.SalaPorId(Convert.ToByte(fila["numSala"]))
     );
 
@@ -56,20 +55,13 @@ public class MapProyeccion : Mapeador<Proyeccion>
         proyeccion.id = Convert.ToByte(paramIdProyeccion.Value);
     }
 
-    public Proyeccion proyeccionesPorId(byte id)
+    public Proyeccion ProyeccionPorId(byte id)
     {
-        SetComandoSP("ProyeccionPorId");
-
-        BP.CrearParametro("unIdProyeccion")
-        .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
-        .SetValor("id")
-        .AgregarParametro();
-
-        return ElementoDesdeSP();
+        return FiltrarPorPK("idProyeccion", id)!;
     }
 
     public List<Proyeccion> ObtenerProyecciones(Pelicula pelicula)
     {
-        return FilasFiltradas("idPelicula", pelicula.id);
+        return FilasFiltradas("idPelicula", pelicula.idPelcula);
     }
 }

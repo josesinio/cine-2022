@@ -1,5 +1,4 @@
 using et12.edu.ar.AGBD.Mapeadores;
-using et12.edu.ar.AGBD.Ado;
 using System.Data;
 using Cine.Core;
 
@@ -8,15 +7,15 @@ namespace Cine.AdoMySQL.Mapeadores;
 public class PeliculaMap : Mapeador<Pelicula>
 {
     public MapGenero MapGenero { set; get; }
-    public PeliculaMap(AdoAGBD ado) : base(ado) => Tabla = "Pelicula";
-    public PeliculaMap(MapGenero mapGenero) : this(mapGenero.AdoAGBD)
+    public PeliculaMap(MapGenero mapGenero) : base(mapGenero.AdoAGBD)
     {
         MapGenero = mapGenero;
+        Tabla = "Pelicula";
     }
     public override Pelicula ObjetoDesdeFila(DataRow fila)
     => new Pelicula
     (
-        id: Convert.ToUInt16(fila["id"]),
+        idPelicula: Convert.ToUInt16(fila["id"]),
         nombre: fila["Nombre"].ToString()!,
         estreno: Convert.ToDateTime(fila["Estreno"]),
         genero: MapGenero.GeneroPorId(Convert.ToByte(fila["idGenero"]))
@@ -49,17 +48,11 @@ public class PeliculaMap : Mapeador<Pelicula>
     public void PosAltaPelicula(Pelicula pelicula)
     {
         var paramIdPelicula = GetParametro("unIdPelicula");
-        pelicula.id = Convert.ToUInt16(paramIdPelicula.Value);
+        pelicula.idPelcula = Convert.ToUInt16(paramIdPelicula.Value);
     }
-    public Pelicula PeliculaPorId(ushort id)
+    public Pelicula? PeliculaPorId(ushort id)
     {
-        SetComandoSP("PeliculaPorId");
-        BP.CrearParametro("unIdPelicula")
-        .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Int16)
-        .SetValor(id)
-        .AgregarParametro();
-
-        return ElementoDesdeSP();
+        return FiltrarPorPK("idPelicula", id);
     }
     public List<Pelicula> obtenerPeliculas() => ColeccionDesdeTabla();
 }

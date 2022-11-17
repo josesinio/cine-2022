@@ -19,4 +19,5 @@ public interface IAdo
 
     void AltaEntrada(Entrada entrada);
     List<Entrada> ObtenerEntrada();
+    public Proyeccion ProyeccionPorId(byte id);
 }

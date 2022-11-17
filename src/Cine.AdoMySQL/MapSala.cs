@@ -57,5 +57,8 @@ public class MapSala : Mapeador<Sala>
         return ElementoDesdeSP();
     }
 
-    public List<Sala> obtenerSalas() => ColeccionDesdeTabla();
+    public List<Sala> ObtenerSalas(Sala sala)
+    {
+        return FilasFiltradas("idSala", sala.NumSala);
+    }
 }
