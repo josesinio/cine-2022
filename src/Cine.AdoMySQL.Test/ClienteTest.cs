@@ -16,7 +16,7 @@ public class ClienteTest
     public void AltaCliente()
     {
         var cliente = new Cliente(100, "quirogapabon11@gmail.com", "Esthefany", "Quiroga", "2516348");
-        AdoCine.AltaCliente(cliente);
+        AdoCine?.AltaCliente(cliente);
         Assert.Equal(2, cliente.id);
     }
 }

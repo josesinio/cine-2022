@@ -1,5 +1,4 @@
 using et12.edu.ar.AGBD.Mapeadores;
-using et12.edu.ar.AGBD.Ado;
 using System.Data;
 using Cine.Core;
 

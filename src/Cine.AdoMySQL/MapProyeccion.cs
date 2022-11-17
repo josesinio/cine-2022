@@ -1,6 +1,5 @@
 using System.Data;
 using Cine.Core;
-using et12.edu.ar.AGBD.Ado;
 using et12.edu.ar.AGBD.Mapeadores;
 
 namespace Cine.AdoMySQL.Mapeadores;
@@ -19,7 +18,7 @@ public class MapProyeccion : Mapeador<Proyeccion>
     => new Proyeccion(
         id: Convert.ToByte(fila["idProyeccion"]),
         fechaHora: Convert.ToDateTime(fila["Fechahora"]),
-        pelicula: MapPelicula.PeliculaPorId(Convert.ToUInt16(fila["IdPelicula"])),
+        pelicula: PeliculaMap.PeliculaPorId(Convert.ToUInt16(fila["IdPelicula"])),
         sala: MapSala.SalaPorId(Convert.ToByte(fila["numSala"]))
     );
 
