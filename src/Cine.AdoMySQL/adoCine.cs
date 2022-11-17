@@ -25,7 +25,17 @@ public class AdoCine
     }
     public void AltaGenero(Genero genero) => MapGenero.AltaGenero(genero);
     public List<Genero> ObtenerGenero() => MapGenero.ColeccionDesdeTabla();
+    public void AltaSala(Sala sala)
+    {
+        throw new NotImplementedException();
+    }
 
+    public void altaPelicula(Pelicula pelicula)
+    {
+        throw new NotImplementedException();
+    }
+
+    //public void AltaPelicula(Pelicula pelicula)
     public void AltaCliente(Cliente cliente)
     {
         throw new NotImplementedException();
