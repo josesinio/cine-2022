@@ -24,7 +24,7 @@ public class Sala
 
     public void EliminarProyeccion(byte Id)
     {
-        var peli = this.peliculas.SingleOrDefault(x => x.idPelcula == Id);
+        var peli = this.peliculas.SingleOrDefault(x => x.idPelicula == Id);
         if (peli is null)
             throw new Exception($"No existe esta pelicula{Id}.");
 

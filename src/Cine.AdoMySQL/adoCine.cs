@@ -3,7 +3,7 @@ using Cine.Core;
 
 namespace Cine.AdoMySQL.Mapeadores;
 
-public class AdoCine
+public class AdoCine : IAdo
 {
     public AdoAGBD Ado { get; set; }
     public MapGenero MapGenero { get; set; }
@@ -23,30 +23,59 @@ public class AdoCine
         MapEntrada = new MapEntrada(MapProyeccion, MapSala, MapCliente);
 
     }
-    public void AltaGenero(Genero genero) => MapGenero.AltaGenero(genero);
-    public List<Genero> ObtenerGenero() => MapGenero.ColeccionDesdeTabla();
+
+    public void AltaGenero(Genero genero)
+         => MapGenero.AltaGenero(genero);
+    public List<Genero> ObtenerGenero()
+         => MapGenero.ColeccionDesdeTabla();
+
     public void AltaSala(Sala sala)
-    {
-        throw new NotImplementedException();
-    }
+         => MapSala.AltaSAla(sala);
 
     public void AltaPelicula(Pelicula pelicula)
+        => PeliculaMap.AltaPelicula(pelicula);
+
+    public List<Pelicula> ObtenerPelicula()
     {
         throw new NotImplementedException();
     }
 
-    //public void AltaPelicula(Pelicula pelicula)
+    public List<Sala> ObtenerSala()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void AltaProyeccion(Proyeccion proyeccion)
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<Proyeccion> ObtenerProyeccion()
+    {
+        throw new NotImplementedException();
+    }
+
     public void AltaCliente(Cliente cliente)
     {
         throw new NotImplementedException();
     }
 
-    public void ClientePorId(Cliente cliente)
+    public List<Cliente> ObtenerCliente()
     {
         throw new NotImplementedException();
     }
 
     public void AltaEntrada(Entrada entrada)
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<Entrada> ObtenerEntrada()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Proyeccion ProyeccionPorId(byte id)
     {
         throw new NotImplementedException();
     }

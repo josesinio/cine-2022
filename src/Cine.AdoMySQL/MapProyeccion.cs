@@ -62,6 +62,6 @@ public class MapProyeccion : Mapeador<Proyeccion>
 
     public List<Proyeccion> ObtenerProyecciones(Pelicula pelicula)
     {
-        return FilasFiltradas("idPelicula", pelicula.idPelcula);
+        return FilasFiltradas("idPelicula", pelicula.idPelicula);
     }
 }

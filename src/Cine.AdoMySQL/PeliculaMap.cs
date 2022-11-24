@@ -48,11 +48,8 @@ public class PeliculaMap : Mapeador<Pelicula>
     public void PosAltaPelicula(Pelicula pelicula)
     {
         var paramIdPelicula = GetParametro("unIdPelicula");
-        pelicula.idPelcula = Convert.ToUInt16(paramIdPelicula.Value);
+        pelicula.idPelicula = Convert.ToUInt16(paramIdPelicula.Value);
     }
-    public Pelicula PeliculaPorId(ushort id)
-    {
-        return FiltrarPorPK("idPelicula", id);
-    }
+    public Pelicula? PeliculaPorId(ushort id) => FiltrarPorPK("idPelicula", id);
     public List<Pelicula> obtenerPeliculas() => ColeccionDesdeTabla();
 }
