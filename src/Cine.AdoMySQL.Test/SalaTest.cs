@@ -8,7 +8,7 @@ public class SalaTest
     public AdoCine AdoCine { get; set; }
     public SalaTest()
     {
-        var adoAGBD = FactoryAdoAGBD.GetAdoMySQL("appSettings.json", "tests");
+        var adoAGBD = FactoryAdoAGBD.GetAdoMySQL("appSettings.json", "test");
         AdoCine = new AdoCine(adoAGBD);
     }
     [Fact]

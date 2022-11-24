@@ -25,58 +25,39 @@ public class AdoCine : IAdo
     }
 
     public void AltaGenero(Genero genero)
-         => MapGenero.AltaGenero(genero);
+        => MapGenero.AltaGenero(genero);
     public List<Genero> ObtenerGenero()
-         => MapGenero.ColeccionDesdeTabla();
+        => MapGenero.ColeccionDesdeTabla();
 
     public void AltaSala(Sala sala)
-         => MapSala.AltaSAla(sala);
+        => MapSala.AltaSAla(sala);
 
+    public List<Sala> ObtenerSala()
+        => MapSala.ColeccionDesdeTabla();
     public void AltaPelicula(Pelicula pelicula)
         => PeliculaMap.AltaPelicula(pelicula);
 
     public List<Pelicula> ObtenerPelicula()
-    {
-        throw new NotImplementedException();
-    }
-
-    public List<Sala> ObtenerSala()
-    {
-        throw new NotImplementedException();
-    }
+        => PeliculaMap.ColeccionDesdeTabla();
 
     public void AltaProyeccion(Proyeccion proyeccion)
-    {
-        throw new NotImplementedException();
-    }
+        => MapProyeccion.AltaProyeccion(proyeccion);
 
     public List<Proyeccion> ObtenerProyeccion()
-    {
-        throw new NotImplementedException();
-    }
+        => MapProyeccion.ColeccionDesdeTabla();
 
     public void AltaCliente(Cliente cliente)
-    {
-        throw new NotImplementedException();
-    }
+        => MapCliente.AltaCliente(cliente);
 
     public List<Cliente> ObtenerCliente()
-    {
-        throw new NotImplementedException();
-    }
+        => MapCliente.ColeccionDesdeTabla();
 
     public void AltaEntrada(Entrada entrada)
-    {
-        throw new NotImplementedException();
-    }
+        => MapEntrada.AltaEntrada(entrada);
 
     public List<Entrada> ObtenerEntrada()
-    {
-        throw new NotImplementedException();
-    }
+        => MapEntrada.ColeccionDesdeTabla();
 
     public Proyeccion ProyeccionPorId(byte id)
-    {
-        throw new NotImplementedException();
-    }
+        => MapProyeccion.ProyeccionPorId(id);
 }
