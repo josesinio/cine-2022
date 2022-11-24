@@ -18,7 +18,7 @@ public class PeliculaMap : Mapeador<Pelicula>
         idPelicula: Convert.ToUInt16(fila["id"]),
         nombre: fila["Nombre"].ToString()!,
         estreno: Convert.ToDateTime(fila["Estreno"]),
-        genero: MapGenero.GeneroPorId(Convert.ToByte(fila["idGenero"]))
+        IdGenero: Convert.ToByte(fila["idGenero"])
     );
     public void AltaPelicula(Pelicula pelicula)
     => EjecutarComandoCon("altaPelicula", ConfigurarAltaPelicula, PosAltaPelicula, pelicula);
@@ -50,7 +50,7 @@ public class PeliculaMap : Mapeador<Pelicula>
         var paramIdPelicula = GetParametro("unIdPelicula");
         pelicula.idPelcula = Convert.ToUInt16(paramIdPelicula.Value);
     }
-    public Pelicula? PeliculaPorId(ushort id)
+    public Pelicula PeliculaPorId(ushort id)
     {
         return FiltrarPorPK("idPelicula", id);
     }

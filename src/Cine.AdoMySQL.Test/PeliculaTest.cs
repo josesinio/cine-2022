@@ -17,6 +17,6 @@ public class PeliculaTest
     {
         var pelicula = new Pelicula(1, "son como niños 2", new DateTime(2004 - 09 - 25), 1);
         AdoCine.AltaPelicula(pelicula);
-        Assert.Equal(1, nombre, estreno, idGenero);
+        Assert.Equal(1, pelicula.nombre, pelicula.estreno, pelicula.IdGenero);
     }
 }

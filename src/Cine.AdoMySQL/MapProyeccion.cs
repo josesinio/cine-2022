@@ -16,10 +16,10 @@ public class MapProyeccion : Mapeador<Proyeccion>
 
     public override Proyeccion ObjetoDesdeFila(DataRow fila)
     => new Proyeccion(
-        id: Convert.ToByte(fila["idProyeccion"]),
+        id: Convert.ToUInt16(fila["idProyeccion"]),
         fechaHora: Convert.ToDateTime(fila["Fechahora"]),
-        pelicula: MapPelicula.PeliculaPorId(Convert.ToUInt16(fila["IdPelicula"]))!,
-        sala: MapSala.SalaPorId(Convert.ToByte(fila["numSala"]))
+        IdPelicula: Convert.ToUInt16(fila["IdPelicula"]),
+        IdSala: Convert.ToByte(fila["numSala"])
     );
 
     public void AltaProyeccion(Proyeccion proyeccion)
@@ -32,7 +32,7 @@ public class MapProyeccion : Mapeador<Proyeccion>
         SetComandoSP("altaProyeccion");
 
         BP.CrearParametroSalida("unIdProyeccion")
-        .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
+        .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UInt16)
         .AgregarParametro();
 
         BP.CrearParametroSalida("unaFechaHora")
@@ -55,7 +55,7 @@ public class MapProyeccion : Mapeador<Proyeccion>
         proyeccion.id = Convert.ToByte(paramIdProyeccion.Value);
     }
 
-    public Proyeccion ProyeccionPorId(byte id)
+    public Proyeccion ProyeccionPorId(ushort id)
     {
         return FiltrarPorPK("idProyeccion", id)!;
     }

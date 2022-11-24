@@ -26,7 +26,7 @@ public class MapCliente : Mapeador<Cliente>
     {
         SetComandoSP("altaCliente");
 
-        BP.CrearParametroSalida("unid")
+        BP.CrearParametroSalida("unidcliente")
         .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
         .AgregarParametro();
 
@@ -60,7 +60,7 @@ public class MapCliente : Mapeador<Cliente>
     {
         SetComandoSP("ClientePorId");
 
-        BP.CrearParametro("unid")
+        BP.CrearParametro("unidCliente")
         .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
         .SetValor(id)
         .AgregarParametro();

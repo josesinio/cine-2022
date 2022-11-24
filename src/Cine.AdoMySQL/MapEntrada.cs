@@ -20,10 +20,9 @@ namespace Cine.AdoMySQL.Mapeadores
 
         public override Entrada ObjetoDesdeFila(DataRow fila) => new Entrada
         (
-            numEntrada: Convert.ToByte(fila["Id"]),
-            proyeccion: MapProyeccion.ProyeccionPorId(Convert.ToByte(fila["idProyeccion"])),
-            cliente: MapCliente.ClientePorId(Convert.ToByte(fila["IdCliente"])),
-            sala: MapSala.SalaPorId(Convert.ToByte(fila["IdSala"])),
+            NumEntrada: Convert.ToByte(fila["Id"]),
+            IdProyeccion: Convert.ToUInt16(fila["IdProyeccion"]),
+            IdCliente: Convert.ToByte(fila["IdCliente"]),
             capacidad: Convert.ToInt32(fila["capacidad"]),
             valor: Convert.ToSingle(fila["valor"])
         );
@@ -44,17 +43,12 @@ namespace Cine.AdoMySQL.Mapeadores
 
             BP.CrearParametroSalida("unidproyeccion")
             .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
-            .SetValor(entrada.Proyeccion.id)
+            .SetValor(entrada.IdProyeccion)
             .AgregarParametro();
 
             BP.CrearParametroSalida("unIdCliente")
             .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
-            .SetValor(entrada.Cliente.id);
-
-            BP.CrearParametroSalida("unIdSala")
-            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
-            .SetValor(entrada.Sala.NumSala)
-            .AgregarParametro();
+            .SetValor(entrada.IdCliente);
 
             BP.CrearParametroSalida("Capacidad")
             .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Int32)

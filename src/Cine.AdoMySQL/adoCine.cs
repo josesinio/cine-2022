@@ -30,7 +30,7 @@ public class AdoCine
         throw new NotImplementedException();
     }
 
-    public void altaPelicula(Pelicula pelicula)
+    public void AltaPelicula(Pelicula pelicula)
     {
         throw new NotImplementedException();
     }
@@ -42,6 +42,11 @@ public class AdoCine
     }
 
     public void ClientePorId(Cliente cliente)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void AltaEntrada(Entrada entrada)
     {
         throw new NotImplementedException();
     }

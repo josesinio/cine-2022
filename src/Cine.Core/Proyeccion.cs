@@ -4,15 +4,15 @@ namespace Cine.Core
     {
         public ushort id { get; set; }
         public DateTime fechaHora { get; set; }
-        public Pelicula pelicula { get; set; } = null!;
-        public Sala sala { get; set; } = null!;
+        public ushort IdPelicula { get; set; }
+        public byte IdSala { get; set; }
 
-        public Proyeccion(ushort id, DateTime fechaHora, byte IdPelicula, byte IdSala)
+        public Proyeccion(ushort id, DateTime fechaHora, ushort IdPelicula, byte IdSala)
         {
             this.id = id;
             this.fechaHora = fechaHora;
             this.IdPelicula = IdPelicula;
-            this.sala = sala;
+            this.IdSala = IdSala;
         }
     }
 
