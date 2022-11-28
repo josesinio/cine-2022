@@ -25,16 +25,19 @@ public class MapSala : Mapeador<Sala>
     {
         SetComandoSP("altaSala");
 
-        BP.CrearParametroSalida("unNumSala")
-        .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
+        BP.CrearParametro("unNumSala")
+        .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UByte)
+        .SetValor(sala.NumSala)
         .AgregarParametro();
 
-        BP.CrearParametroSalida("unPiso")
+        BP.CrearParametro("unPiso")
         .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
+        .SetValor(sala.Piso)
         .AgregarParametro();
 
-        BP.CrearParametroSalida("unaCapacidad")
+        BP.CrearParametro("unaCapacidad")
         .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Int32)
+        .SetValor(sala.Capacidad)
         .AgregarParametro();
 
     }

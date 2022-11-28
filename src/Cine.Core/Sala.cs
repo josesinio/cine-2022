@@ -24,11 +24,11 @@ public class Sala
 
     public void EliminarProyeccion(byte Id)
     {
-        var peli = this.peliculas.SingleOrDefault(x => x.idPelicula == Id);
-        if (peli is null)
+        var pelicula = this.peliculas.SingleOrDefault(x => x.idPelicula == Id);
+        if (pelicula is null)
             throw new Exception($"No existe esta pelicula{Id}.");
 
-        this.peliculas.Remove(peli);
+        this.peliculas.Remove(pelicula);
     }
 
 }

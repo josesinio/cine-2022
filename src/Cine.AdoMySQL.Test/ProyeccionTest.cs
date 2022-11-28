@@ -7,7 +7,7 @@ namespace Cine.AdoMySQL.Test;
 
 public class ProyeccionTest
 {
-    public AdoCine? AdoCine { get; set; }
+    public AdoCine AdoCine { get; set; }
     public ProyeccionTest()
     {
         var adoAGBD = FactoryAdoAGBD.GetAdoMySQL("appSettings.json", "test");
@@ -17,7 +17,7 @@ public class ProyeccionTest
     public void AltaProyeccion()
     {
         var proyeccion = new Proyeccion(3, DateTime.Now, 1, 20);
-        AdoCine?.AltaProyeccion(proyeccion);
+        AdoCine.AltaProyeccion(proyeccion);
         Assert.Equal(3, proyeccion.id);
 
     }

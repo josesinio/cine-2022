@@ -31,17 +31,19 @@ public class PeliculaMap : Mapeador<Pelicula>
         .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Int16)
         .AgregarParametro();
 
-        BP.CrearParametroSalida("unNombre")
+        BP.CrearParametro("unNombre")
         .SetTipoVarchar(45)
         .SetValor(pelicula.nombre)
         .AgregarParametro();
 
-        BP.CrearParametroSalida("unEstreno")
+        BP.CrearParametro("unEstreno")
         .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Date)
+        .SetValor(pelicula.estreno)
         .AgregarParametro();
 
-        BP.CrearParametroSalida("unIdGenero")
+        BP.CrearParametro("unIdGenero")
         .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
+        .SetValor(pelicula.IdGenero)
         .AgregarParametro();
     }
 

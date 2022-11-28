@@ -16,6 +16,6 @@ public class SalaTest
     {
         var sala = new Sala(1, 3, 200);
         AdoCine.AltaSala(sala);
-        Assert.Equal(2, sala.NumSala);
+        Assert.Equal(1, sala.NumSala);
     }
 }

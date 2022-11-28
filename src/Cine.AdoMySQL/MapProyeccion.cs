@@ -35,16 +35,19 @@ public class MapProyeccion : Mapeador<Proyeccion>
         .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UInt16)
         .AgregarParametro();
 
-        BP.CrearParametroSalida("unaFechaHora")
+        BP.CrearParametro("unaFechaHora")
         .SetTipo(MySql.Data.MySqlClient.MySqlDbType.DateTime)
+        .SetValor(proyeccion.fechaHora)
         .AgregarParametro();
 
-        BP.CrearParametroSalida("unIdPelicula")
-        .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UInt16)
+        BP.CrearParametro("unIdPelicula")
+        .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UByte)
+        .SetValor(proyeccion.IdPelicula)
         .AgregarParametro();
 
-        BP.CrearParametroSalida("unIdSala")
+        BP.CrearParametro("unIdSala")
         .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
+        .SetValor(proyeccion.IdSala)
         .AgregarParametro();
 
     }

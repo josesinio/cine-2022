@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS CINE;
 
-CREATE DATABASE ;
+CREATE DATABASE CINE;
 
 CREATE TABLE
     CINE.Genero(
@@ -11,10 +11,10 @@ CREATE TABLE
 
 CREATE TABLE
     CINE.Sala(
-        numSala tinyint unsigned not null,
+        NumSala tinyint unsigned not null,
         piso tinyint unsigned not null,
         capacidad smallint unsigned not null,
-        primary key (numSala)
+        primary key (NumSala)
     );
 
 CREATE TABLE
@@ -43,9 +43,9 @@ CREATE TABLE
         idProyeccion smallint unsigned not null auto_increment,
         fechaHora datetime not null,
         idPelicula smallint unsigned not null,
-        numSala tinyint unsigned not null,
+        NumSala tinyint unsigned not null,
         primary key (idProyeccion),
-        constraint fk_Proyeccion_Sala foreign key (numSala) references CINE.Sala (numSala),
+        constraint fk_Proyeccion_Sala foreign key (NumSala) references CINE.Sala (NumSala),
         constraint fk_Proyeccion_Pelicula foreign key (idPelicula) references CINE.Pelicula (idPelicula)
     );
 

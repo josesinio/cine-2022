@@ -64,9 +64,9 @@ namespace Cine.AdoMySQL.Mapeadores
             var paramIdEntrada = GetParametro("unIdEntrada");
             entrada.NumEntrada = Convert.ToByte(paramIdEntrada.Value);
         }
-        public Entrada? EntradaPorId(byte numEntrada)
+        public Entrada EntradaPorId(byte numEntrada)
         {
-            return FiltrarPorPK("idEntrada", numEntrada);
+            return FiltrarPorPK("idEntrada", numEntrada)!;
         }
 
     }

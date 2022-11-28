@@ -30,22 +30,22 @@ public class MapCliente : Mapeador<Cliente>
         .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
         .AgregarParametro();
 
-        BP.CrearParametroSalida("unemail")
+        BP.CrearParametro("unemail")
         .SetTipoVarchar(45)
         .SetValor(cliente.email)
         .AgregarParametro();
 
-        BP.CrearParametroSalida("unnombre")
+        BP.CrearParametro("unnombre")
         .SetTipoVarchar(45)
         .SetValor(cliente.nombre)
         .AgregarParametro();
 
-        BP.CrearParametroSalida("unapellido")
+        BP.CrearParametro("unapellido")
         .SetTipoVarchar(45)
         .SetValor(cliente.apellido)
         .AgregarParametro();
 
-        BP.CrearParametroSalida("unaclave")
+        BP.CrearParametro("unaclave")
         .SetTipoVarchar(45)
         .SetValor(cliente.clave)
         .AgregarParametro();
