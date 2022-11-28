@@ -29,13 +29,13 @@ namespace Cine.AdoMySQL.Mapeadores
 
         public void AltaEntrada(Entrada entrada)
         {
-            EjecutarComandoCon("altaEntrada", ConfigurarAltaEntrada, PostAltaEntrada, entrada);
+            EjecutarComandoCon("AltaEntrada", ConfigurarAltaEntrada, PostAltaEntrada, entrada);
         }
 
 
         public void ConfigurarAltaEntrada(Entrada entrada)
         {
-            SetComandoSP("altaEntrada");
+            SetComandoSP("AltaEntrada");
 
             BP.CrearParametroSalida("unIdEntrada")
             .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)

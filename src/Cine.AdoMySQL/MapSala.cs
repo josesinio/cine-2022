@@ -19,11 +19,11 @@ public class MapSala : Mapeador<Sala>
         Capacidad: Convert.ToInt32(fila["capacidad"])
     );
     public void AltaSAla(Sala sala)
-    => EjecutarComandoCon("altaSala", ConfigurarAltaSala, postAltaSala, sala);
+    => EjecutarComandoCon("AltaSala", ConfigurarAltaSala, postAltaSala, sala);
 
     public void ConfigurarAltaSala(Sala sala)
     {
-        SetComandoSP("altaSala");
+        SetComandoSP("AltaSala");
 
         BP.CrearParametro("unNumSala")
         .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UByte)

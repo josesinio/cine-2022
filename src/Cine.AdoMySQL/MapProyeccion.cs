@@ -17,7 +17,7 @@ public class MapProyeccion : Mapeador<Proyeccion>
     public override Proyeccion ObjetoDesdeFila(DataRow fila)
     => new Proyeccion(
         id: Convert.ToUInt16(fila["idProyeccion"]),
-        fechaHora: Convert.ToDateTime(fila["Fechahora"]),
+        fechaHora: Convert.ToDateTime(fila["fechahora"]),
         IdPelicula: Convert.ToUInt16(fila["IdPelicula"]),
         IdSala: Convert.ToByte(fila["numSala"])
     );

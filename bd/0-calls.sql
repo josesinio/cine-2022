@@ -1,3 +1,4 @@
+SELECT 'Creando calls' Estado ;
 call altaGenero (1,"comedia");
 call altaGenero(2, "Accion");
 call altaGenero(3, "Terror");

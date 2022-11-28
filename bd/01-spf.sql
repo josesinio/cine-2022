@@ -3,20 +3,16 @@
 -- Se pide hacer los SP para dar de alta todas las entidades (menos Entrada y Cliente) con el prefijo ‘alta’.
 
 USE CINE;
-
-DELIMITER $$
-
-DROP PROCEDURE
-    IF EXISTS altaGenero $$
-CREATE PROCEDURE
-    altaGenero (
+SELECT 'Creando procedimientos' Estado ;
+delimiter $$ 
+DROP PROCEDURE IF EXISTS altaGenero $$
+CREATE PROCEDURE altaGenero (
         OUT unidGenero tinyint unsigned,
         in ungenero varchar(45)
     ) BEGIN
 INSERT INTO
     Genero (idGenero, genero)
 VALUES (unidGenero, ungenero);
-
 END $$ 
 
 DELIMITER $$ 
@@ -67,8 +63,7 @@ VALUES (
 END $$ 
 
 DELIMITER $$
-
-DROP PRoCEDURE
+DROP PROCEDURE
     IF EXISTS altaProyeccion $$
 CREATE PROCEDURE
     altaProyeccion (
@@ -91,16 +86,16 @@ VALUES (
         unNumSala
     );
 
-END $$ -- Segundo ejercicio de STORED PROCEDURE 01-SPF.SQL
+END $$ 
+-- Segundo ejercicio de STORED PROCEDURE 01-SPF.SQL
 -- Se pide hacer el SP ‘registrarCliente’ que reciba los datos del cliente. Es importante guardar encriptada la contraseña del cliente usando SHA256.
 
 DELIMITER %% 
 
-DROP PROCEDURE
-    IF EXISTS registrarCliente % %
+DROP PROCEDURE IF EXISTS registrarCliente % %
 CREATE PROCEDURE
     registrarCliente (
-        OUT unidCliente INT,
+        OUT unidCliente smallint unsigned,
         unEmail VARCHAR (45),
         unNombre VARCHAR (45),
         unApellido VARCHAR (45),
@@ -165,8 +160,8 @@ DELIMITER %%
 DROP PROCEDURE IF EXISTS top10 % %
 CREATE PROCEDURE
     top10 (
-        unMenorFecha DATETIME,
-        unMayorFecha DATETIME
+        unMenorFecha datetime,
+        unMayorFecha datetime
     ) begin
 SELECT
     p.idPelicula,

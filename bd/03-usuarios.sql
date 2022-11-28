@@ -2,6 +2,7 @@
 Desde cualquier lado puede ver todas las tablas.
 Desde la terminal donde corre el sistema puede agregar y modificar películas, proyecciones y salas.
 */
+SELECT 'Creando usuarios' Estado ;
 drop user  if exists 'Administrador'@'%';
 create user  'Administrador'@'%' identified by 'adminpass';
 drop user  if exists 'Administrador'@'localhost';
