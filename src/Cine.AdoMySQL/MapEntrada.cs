@@ -20,10 +20,10 @@ namespace Cine.AdoMySQL.Mapeadores
 
         public override Entrada ObjetoDesdeFila(DataRow fila) => new Entrada
         (
-            NumEntrada: Convert.ToByte(fila["idEntrada"]),
+            NumEntrada: Convert.ToByte(fila["numEntrada"]),
             IdProyeccion: Convert.ToUInt16(fila["IdProyeccion"]),
             IdCliente: Convert.ToByte(fila["IdCliente"]),
-            valor: Convert.ToSingle(fila["valor"])
+            valor: Convert.ToDecimal(fila["valor"])
         );
 
         public void AltaEntrada(Entrada entrada)

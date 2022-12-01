@@ -19,7 +19,7 @@ public class ClienteTest
         var elementos = AdoCine.MapCliente.ColeccionDesdeTabla().Count;
         AdoCine.AltaCliente(cliente);
         var elementosnuevos = AdoCine.MapCliente.ColeccionDesdeTabla().Count;
-        Assert.Equal(elementos, elementosnuevos + 1);
+        Assert.Equal(elementos + 1, elementosnuevos);
     }
 
 }

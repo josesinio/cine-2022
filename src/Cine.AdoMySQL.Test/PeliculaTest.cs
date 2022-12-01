@@ -19,6 +19,6 @@ public class PeliculaTest
 
         AdoCine.AltaPelicula(pelicula);
         var elementosnuevos = AdoCine.PeliculaMap.ColeccionDesdeTabla().Count;
-        Assert.Equal(elementosnuevos, elementos + 1);
+        Assert.Equal(elementos + 1, elementosnuevos);
     }
 }
