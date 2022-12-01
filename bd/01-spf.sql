@@ -9,9 +9,8 @@ delimiter $$
 USE CINE $$
 SELECT 'Creando procedimientos' Estado $$
 
-DROP PROCEDURE IF EXISTS altaGenero $$
-CREATE PROCEDURE altaGenero (
-
+DROP PROCEDURE IF EXISTS AltaGenero $$
+CREATE PROCEDURE AltaGenero (
         OUT unidGenero tinyint unsigned,
         in ungenero varchar(45)
     ) BEGIN

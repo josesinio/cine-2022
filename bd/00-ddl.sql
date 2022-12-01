@@ -7,7 +7,7 @@ SELECT
 
 CREATE TABLE
     CINE.Genero(
-        idGenero tinyint unsigned not null,
+        idGenero tinyint unsigned not null auto_increment,
         genero varchar(45) not null,
         primary key (idGenero)
     );

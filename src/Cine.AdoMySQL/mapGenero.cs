@@ -20,7 +20,7 @@ public class MapGenero : Mapeador<Genero>
 
     public void ConfigurarAltaGenero(Genero genero)
     {
-        SetComandoSP("altaGenero");
+        SetComandoSP("AltaGenero");
 
         BP.CrearParametroSalida("unId")
         .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
