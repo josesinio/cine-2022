@@ -1,4 +1,4 @@
--- Active: 1646654372192@@127.0.0.1@3306@cine
+-- Active: 1632321143175@@127.0.0.1@3306@cine
 
 -- Primer ejercicio de STORED PROCEDURE 01-SPF.SQL
 
@@ -10,15 +10,16 @@ USE CINE $$
 SELECT 'Creando procedimientos' Estado $$
 
 DROP PROCEDURE IF EXISTS AltaGenero $$
+
 CREATE PROCEDURE AltaGenero (
         OUT unidGenero tinyint unsigned,
         in ungenero varchar(45)
-    ) BEGIN
-INSERT INTO
-    Genero (genero)
-VALUES (ungenero);
+    )
+BEGIN
+    INSERT INTO Genero (genero)
+        VALUES (ungenero);
 
-SET unidGenero = LAST_INSERT_ID();
+    SET unidGenero = LAST_INSERT_ID();
 
 END $$ 
 
