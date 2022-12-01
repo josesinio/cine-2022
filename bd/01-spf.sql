@@ -1,19 +1,25 @@
+-- Active: 1646654372192@@127.0.0.1@3306@cine
+
 -- Primer ejercicio de STORED PROCEDURE 01-SPF.SQL
 
 -- Se pide hacer los SP para dar de alta todas las entidades (menos Entrada y Cliente) con el prefijo ‘alta’.
 
-USE CINE;
-SELECT 'Creando procedimientos' Estado ;
+USE CINE; SELECT 'Creando procedimientos' Estado ; 
+
 delimiter $$ 
-DROP PROCEDURE IF EXISTS altaGenero $$
-CREATE PROCEDURE altaGenero (
+
+DROP PROCEDURE
+    IF EXISTS altaGenero $$
+CREATE PROCEDURE
+    altaGenero (
         OUT unidGenero tinyint unsigned,
         in ungenero varchar(45)
     ) BEGIN
 INSERT INTO
     Genero (idGenero, genero)
 VALUES (unidGenero, ungenero);
-END $$ 
+
+END $$
 
 DELIMITER $$ 
 
@@ -33,7 +39,7 @@ VALUES (
         unacapacidad
     );
 
-END $$ 
+END $$
 
 DELIMITER $$ 
 
@@ -60,9 +66,10 @@ VALUES (
         unidGenero
     );
 
-END $$ 
+END $$
 
 DELIMITER $$
+
 DROP PROCEDURE
     IF EXISTS altaProyeccion $$
 CREATE PROCEDURE
@@ -70,7 +77,7 @@ CREATE PROCEDURE
         OUT unidProyeccion smallint unsigned,
         in unafechaHora datetime,
         in unidPelicula smallint unsigned,
-        in unnumSala tinyint unsigned
+        in unNumSala tinyint unsigned
     ) BEGIN
 INSERT INTO
     Proyeccion (
@@ -86,13 +93,13 @@ VALUES (
         unNumSala
     );
 
-END $$ 
--- Segundo ejercicio de STORED PROCEDURE 01-SPF.SQL
+END $$ -- Segundo ejercicio de STORED PROCEDURE 01-SPF.SQL
 -- Se pide hacer el SP ‘registrarCliente’ que reciba los datos del cliente. Es importante guardar encriptada la contraseña del cliente usando SHA256.
 
 DELIMITER %% 
 
-DROP PROCEDURE IF EXISTS registrarCliente % %
+DROP PROCEDURE
+    IF EXISTS registrarCliente % %
 CREATE PROCEDURE
     registrarCliente (
         OUT unidCliente smallint unsigned,
@@ -198,4 +205,4 @@ WHERE
 
 return recaudacion;
 
-end $$ 
+end $$

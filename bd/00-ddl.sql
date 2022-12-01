@@ -1,7 +1,9 @@
 DROP DATABASE IF EXISTS CINE;
 
 CREATE DATABASE CINE;
-SELECT 'Creando BD y Tablas' Estado ;
+
+SELECT
+    'Creando BD y Tablas' Estado;
 
 CREATE TABLE
     CINE.Genero(

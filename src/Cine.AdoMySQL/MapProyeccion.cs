@@ -45,11 +45,10 @@ public class MapProyeccion : Mapeador<Proyeccion>
         .SetValor(proyeccion.IdPelicula)
         .AgregarParametro();
 
-        BP.CrearParametro("unIdSala")
+        BP.CrearParametro("unNumSala")
         .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
         .SetValor(proyeccion.IdSala)
         .AgregarParametro();
-
     }
 
     public void PostAltaProyeccion(Proyeccion proyeccion)
