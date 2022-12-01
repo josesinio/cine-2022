@@ -16,6 +16,7 @@ INSERT
 
 begin declare cantidadEntradas TINYINT;
 
+
 declare cantidadButacas smallint unsigned;
 
 Select
@@ -44,6 +45,7 @@ end $$
 
 -- Realizar un trigger para que cada vez que se da de alta una película nueva, se crea una proyección por cada sala y para la fecha y hora de creación.
 
+
 delimiter $$
 
 DROP TRIGGER
@@ -59,5 +61,5 @@ SELECT
     new.idPelicula,
     numSala
 FROM Sala;
+end $$ 
 
-end $$

@@ -16,7 +16,7 @@ public class ProyeccionTest
     [Fact]
     public void AltaProyeccion()
     {
-        var proyeccion = new Proyeccion(3, DateTime.Now, 1, 20);
+        var proyeccion = new Proyeccion(0, DateTime.Now, IdPelicula: 1, IdSala: 3);
         AdoCine.AltaProyeccion(proyeccion);
         Assert.Equal(3, proyeccion.id);
 
