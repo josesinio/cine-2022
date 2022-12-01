@@ -14,7 +14,7 @@ public class MapSala : Mapeador<Sala>
     public override Sala ObjetoDesdeFila(DataRow fila)
     => new Sala
     (
-        NumSala: Convert.ToByte(fila["Id"]),
+        NumSala: Convert.ToByte(fila["Numsala"]),
         Piso: Convert.ToByte(fila["Piso"]),
         Capacidad: Convert.ToInt32(fila["capacidad"])
     );

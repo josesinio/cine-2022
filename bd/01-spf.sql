@@ -2,17 +2,22 @@
 
 -- Se pide hacer los SP para dar de alta todas las entidades (menos Entrada y Cliente) con el prefijo ‘alta’.
 
-USE CINE;
-SELECT 'Creando procedimientos' Estado ;
 delimiter $$ 
+
+USE CINE $$
+SELECT 'Creando procedimientos' Estado $$
+
 DROP PROCEDURE IF EXISTS altaGenero $$
 CREATE PROCEDURE altaGenero (
         OUT unidGenero tinyint unsigned,
         in ungenero varchar(45)
     ) BEGIN
 INSERT INTO
-    Genero (idGenero, genero)
-VALUES (unidGenero, ungenero);
+    Genero (genero)
+VALUES (ungenero);
+
+SET unidGenero = LAST_INSERT_ID();
+
 END $$ 
 
 DELIMITER $$ 
@@ -92,7 +97,7 @@ END $$
 
 DELIMITER %% 
 
-DROP PROCEDURE IF EXISTS registrarCliente % %
+DROP PROCEDURE IF EXISTS registrarCliente %%
 CREATE PROCEDURE
     registrarCliente (
         OUT unidCliente smallint unsigned,
@@ -103,21 +108,22 @@ CREATE PROCEDURE
     ) BEGIN
 INSERT INTO
     Cliente (
-        idCliente,
         Email,
         Nombre,
         Apellido,
         Clave
     )
 VALUES (
-        unidCliente,
         unEmail,
         unNombre,
         unApellido,
         SHA2(unaClave, 256)
     );
 
-END % % -- Tercer ejercicio de STORED PROCEDURE 01-SPF.SQL
+    SET unidCliente = LAST_INSERT_ID();
+
+END %% 
+-- Tercer ejercicio de STORED PROCEDURE 01-SPF.SQL
 -- Se pide hacer el SP ‘venderEntrada’ que reciba por parámetro el id de la función, valor e identificación del cliente. Pensar en cómo hacer para darle valores consecutivos desde 1 al número de entrada por función.
 
 DELIMITER $$
@@ -157,7 +163,7 @@ end $$ -- Cuarto Ejercicio de STORED PROCEDURE 01-SPF.SQL
 
 DELIMITER %%
 
-DROP PROCEDURE IF EXISTS top10 % %
+DROP PROCEDURE IF EXISTS top10 %%
 CREATE PROCEDURE
     top10 (
         unMenorFecha datetime,
@@ -175,7 +181,7 @@ WHERE
 GROUP BY p.idPelicula
 ORDER BY COUNT(*) DESC;
 
-end % % -- Realizar el SF llamado ‘RecaudacionPara’ que reciba por parámetro un identificador de película y 2 fechas, la función tiene que retornar la recaudación de la película entre esas 2 fechas.
+end %% -- Realizar el SF llamado ‘RecaudacionPara’ que reciba por parámetro un identificador de película y 2 fechas, la función tiene que retornar la recaudación de la película entre esas 2 fechas.
 
 DELIMITER $$
 

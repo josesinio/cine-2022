@@ -20,11 +20,11 @@ public class MapCliente : Mapeador<Cliente>
                 clave: fila["clave"].ToString()!
             );
     public void AltaCliente(Cliente cliente)
-            => EjecutarComandoCon("altaCliente", ConfigurarAltaCliente, PostAltaCliente, cliente);
+            => EjecutarComandoCon("", ConfigurarAltaCliente, PostAltaCliente, cliente);
 
     public void ConfigurarAltaCliente(Cliente cliente)
     {
-        SetComandoSP("altaCliente");
+        SetComandoSP("registrarCliente");
 
         BP.CrearParametroSalida("unidcliente")
         .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)

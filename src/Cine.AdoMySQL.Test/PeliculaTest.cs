@@ -8,7 +8,7 @@ public class PeliculaTest
     public AdoCine AdoCine { get; set; }
     public PeliculaTest()
     {
-        var adoAGBD = FactoryAdoAGBD.GetAdoMySQL("appeSettings.json", "test");
+        var adoAGBD = FactoryAdoAGBD.GetAdoMySQL("appSettings.json", "test");
         AdoCine = new AdoCine(adoAGBD);
     }
     [Fact]

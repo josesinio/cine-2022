@@ -30,7 +30,7 @@ CREATE TABLE
 
 CREATE TABLE
     CINE.Cliente(
-        idCliente smallint unsigned not null,
+        idCliente smallint unsigned not null auto_increment,
         email varchar (45) not null,
         nombre varchar (45) not null,
         apellido varchar (45) not null,

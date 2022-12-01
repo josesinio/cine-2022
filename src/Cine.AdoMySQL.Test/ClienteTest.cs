@@ -15,9 +15,11 @@ public class ClienteTest
     [Fact]
     public void AltaCliente()
     {
-        var cliente = new Cliente(100, "quirogapabon11@gmail.com", "Esthefany", "Quiroga", "2516348");
+        var cliente = new Cliente(2, "quirogapabon11@gmail.com", "Esthefany", "Quiroga", "2516348");
+        var elementos = AdoCine.MapCliente.ColeccionDesdeTabla().Count;
         AdoCine.AltaCliente(cliente);
-        Assert.Equal(2, cliente.id);
+        var elementosnuevos = AdoCine.MapCliente.ColeccionDesdeTabla().Count;
+        Assert.Equal(elementos, elementosnuevos + 1);
     }
 
 }

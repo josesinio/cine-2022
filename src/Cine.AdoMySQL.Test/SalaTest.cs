@@ -14,8 +14,12 @@ public class SalaTest
     [Fact]
     public void AltaSala()
     {
-        var sala = new Sala(1, 3, 200);
+        var sala = new Sala(4, 3, 200);
+        var elementos = AdoCine.MapSala.ColeccionDesdeTabla().Count;
+
         AdoCine.AltaSala(sala);
-        Assert.Equal(1, sala.NumSala);
+        var elementosnuevos = AdoCine.MapSala.ColeccionDesdeTabla().Count;
+
+        Assert.Equal(elementosnuevos, elementos + 1);
     }
 }
