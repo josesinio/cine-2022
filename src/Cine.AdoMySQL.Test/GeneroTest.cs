@@ -14,7 +14,7 @@ public class GeneroTest
     [Fact]
     public void AltaGenero()
     {
-        var genero = new Genero(1, "Accion");
+        var genero = new Genero(4, "Accion");
         AdoCine.AltaGenero(genero);
         Assert.Equal(3, genero.Id);
     }

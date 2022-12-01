@@ -14,8 +14,8 @@ public class PeliculaTest
     [Fact]
     public void AltaPelicula()
     {
-        var pelicula = new Pelicula(1, "son como niños 2", new DateTime(2004, 09, 25), 1);
+        var pelicula = new Pelicula(3, "son como niños 2", new DateTime(2004, 09, 25), 1);
         AdoCine.AltaPelicula(pelicula);
-        Assert.Equal(1, pelicula.idPelicula);
+        Assert.Equal(3, pelicula.idPelicula);
     }
 }

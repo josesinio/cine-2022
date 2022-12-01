@@ -15,7 +15,7 @@ public class MapCliente : Mapeador<Cliente>
             (
                 id: Convert.ToByte(fila["idCliente"]),
                 email: fila["Email"].ToString()!,
-                nombre: fila["Nombres"].ToString()!,
+                nombre: fila["Nombre"].ToString()!,
                 apellido: fila["apellido"].ToString()!,
                 clave: fila["clave"].ToString()!
             );

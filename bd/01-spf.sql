@@ -1,5 +1,3 @@
--- Active: 1632321143175@@127.0.0.1@3306@cine
-
 -- Primer ejercicio de STORED PROCEDURE 01-SPF.SQL
 
 -- Se pide hacer los SP para dar de alta todas las entidades (menos Entrada y Cliente) con el prefijo ‘alta’.
@@ -7,22 +5,23 @@
 delimiter $$ 
 
 USE CINE $$
-SELECT 'Creando procedimientos' Estado $$
-
-DROP PROCEDURE IF EXISTS AltaGenero $$
-
-CREATE PROCEDURE AltaGenero (
+SELECT
+    'Creando procedimientos' Estado $$
+DROP PROCEDURE
+    IF EXISTS AltaGenero $$
+CREATE PROCEDURE
+    AltaGenero (
         OUT unidGenero tinyint unsigned,
         in ungenero varchar(45)
-    )
-BEGIN
-    INSERT INTO Genero (genero)
-        VALUES (ungenero);
+    ) BEGIN
+INSERT INTO
+    Genero (genero)
+VALUES (ungenero);
 
-    SET unidGenero = LAST_INSERT_ID();
+SET
+    unidGenero = LAST_INSERT_ID();
 
-END $$ 
-
+END $$
 
 DELIMITER $$ 
 
@@ -96,13 +95,14 @@ VALUES (
         unNumSala
     );
 
-END $$ -- Segundo ejercicio de STORED PROCEDURE 01-SPF.SQL
+END $$
+
+-- Segundo ejercicio de STORED PROCEDURE 01-SPF.SQL
 -- Se pide hacer el SP ‘registrarCliente’ que reciba los datos del cliente. Es importante guardar encriptada la contraseña del cliente usando SHA256.
 
-DELIMITER %% 
+DELIMITER $$ 
 
-DROP PROCEDURE IF EXISTS registrarCliente %%
-
+DROP PROCEDURE IF EXISTS registrarCliente $$
 CREATE PROCEDURE
     registrarCliente (
         OUT unidCliente smallint unsigned,
@@ -110,24 +110,22 @@ CREATE PROCEDURE
         unNombre VARCHAR (45),
         unApellido VARCHAR (45),
         unaClave CHAR(64)
-    ) BEGIN
-INSERT INTO
-    Cliente (
-        Email,
-        Nombre,
-        Apellido,
-        Clave
     )
-VALUES (
-        unEmail,
-        unNombre,
-        unApellido,
-        SHA2(unaClave, 256)
-    );
+BEGIN
+    INSERT INTO
+        Cliente (Email, Nombre, Apellido, Clave)
+    VALUES (
+            unEmail,
+            unNombre,
+            unApellido,
+            SHA2(unaClave, 256)
+        );
 
-    SET unidCliente = LAST_INSERT_ID();
+    SET
+        unidCliente = LAST_INSERT_ID();
 
-END %% 
+END $$
+
 -- Tercer ejercicio de STORED PROCEDURE 01-SPF.SQL
 -- Se pide hacer el SP ‘venderEntrada’ que reciba por parámetro el id de la función, valor e identificación del cliente. Pensar en cómo hacer para darle valores consecutivos desde 1 al número de entrada por función.
 
@@ -140,35 +138,39 @@ CREATE PROCEDURE
         OUT unvalor decimal(6, 2),
         in unidProyeccion smallint unsigned,
         in unidCliente smallint unsigned
-    ) BEGIN -- 1 ) declarar var para id, se asigna como la cantidad de entradas para esa func + 1.
+    )
+BEGIN
+    -- 1 ) declarar var para id, se asigna como la cantidad de entradas para esa func + 1.
     -- 2 ) usar ese id para el nro de entrada. 
     declare num int default 0;
 
-SELECT count(*) + 1 into num
-FROM entrada
-WHERE
-    idProyeccion = unidProyeccion;
+    SELECT count(*) + 1 into num
+    FROM entrada
+    WHERE
+        idProyeccion = unidProyeccion;
 
-INSERT INTO
-    Entrada (
-        numEntrada,
-        valor,
-        idProyeccion,
-        idcliente
-    )
-VALUES (
-        num,
-        unvalor,
-        unidProyeccion,
-        unidCliente
-    );
+    INSERT INTO
+        Entrada (
+            numEntrada,
+            valor,
+            idProyeccion,
+            idcliente
+        )
+    VALUES (
+            num,
+            unvalor,
+            unidProyeccion,
+            unidCliente
+        );
 
-end $$ -- Cuarto Ejercicio de STORED PROCEDURE 01-SPF.SQL
+    end $$
+
+-- Cuarto Ejercicio de STORED PROCEDURE 01-SPF.SQL
 -- Realizar el SP ‘top10’ que reciba por parámetro 2 fechas, el SP tiene que devolver identificador y nombre de la película y la cantidad de entradas vendidas para la misma entre las 2 fechas. Ordenar por cantidad de entradas de mayor a menor.
 
-DELIMITER %%
+DELIMITER $$
 
-DROP PROCEDURE IF EXISTS top10 %%
+DROP PROCEDURE IF EXISTS top10 $$
 CREATE PROCEDURE
     top10 (
         unMenorFecha datetime,
@@ -186,7 +188,9 @@ WHERE
 GROUP BY p.idPelicula
 ORDER BY COUNT(*) DESC;
 
-end %% -- Realizar el SF llamado ‘RecaudacionPara’ que reciba por parámetro un identificador de película y 2 fechas, la función tiene que retornar la recaudación de la película entre esas 2 fechas.
+end $$
+
+-- Realizar el SF llamado ‘RecaudacionPara’ que reciba por parámetro un identificador de película y 2 fechas, la función tiene que retornar la recaudación de la película entre esas 2 fechas.
 
 DELIMITER $$
 
@@ -197,16 +201,17 @@ CREATE FUNCTION
         unidPelicula smallint unsigned,
         inicio datetime,
         fin datetime
-    ) returns decimal(12, 2) reads sql data begin declare recaudacion decimal(12, 2);
+    ) returns decimal(12, 2) reads sql data
+begin declare recaudacion decimal(12, 2);
 
-SELECT
-    SUM(valor) into recaudacion
-from proyeccion
-    join entrada USING (idproyeccion)
-WHERE
-    idPelicula = unidPelicula
-    and fechaHora BETWEEN inicio and fin;
+    SELECT
+        SUM(valor) into recaudacion
+    from proyeccion
+        join entrada USING (idproyeccion)
+    WHERE
+        idPelicula = unidPelicula
+        and fechaHora BETWEEN inicio and fin;
 
-return recaudacion;
+    return recaudacion;
 
 end $$

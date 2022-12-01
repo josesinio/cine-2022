@@ -16,13 +16,13 @@ public class MapGenero : Mapeador<Genero>
                 Nombre: fila["Nombre"].ToString()!
             );
     public void AltaGenero(Genero genero)
-            => EjecutarComandoCon("altaGenero", ConfigurarAltaGenero, PostAltaGenero, genero);
+            => EjecutarComandoCon("AltaGenero", ConfigurarAltaGenero, PostAltaGenero, genero);
 
     public void ConfigurarAltaGenero(Genero genero)
     {
         SetComandoSP("AltaGenero");
 
-        BP.CrearParametroSalida("unId")
+        BP.CrearParametroSalida("unidGenero")
         .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
         .AgregarParametro();
 
