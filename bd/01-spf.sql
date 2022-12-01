@@ -1,3 +1,4 @@
+-- Active: 1646654372192@@127.0.0.1@3306@cine
 -- Primer ejercicio de STORED PROCEDURE 01-SPF.SQL
 
 -- Se pide hacer los SP para dar de alta todas las entidades (menos Entrada y Cliente) con el prefijo ‘alta’.
@@ -56,17 +57,17 @@ CREATE PROCEDURE
     ) BEGIN
 INSERT INTO
     Pelicula (
-        idPelicula,
         nombre,
         estreno,
         idGenero
     )
 VALUES (
-        unidPelicula,
         unnombre,
         unestreno,
         unidGenero
     );
+    SET
+    unidPelicula = LAST_INSERT_ID();
 
 END $$
 
@@ -83,17 +84,17 @@ CREATE PROCEDURE
     ) BEGIN
 INSERT INTO
     Proyeccion (
-        idProyeccion,
         fechahora,
         idPelicula,
         NumSala
     )
 VALUES (
-        unidProyeccion,
         unafechaHora,
         unidPelicula,
         unNumSala
     );
+        SET
+    unidProyeccion = LAST_INSERT_ID();
 
 END $$
 
@@ -135,7 +136,8 @@ DROP PROCEDURE
     IF EXISTS venderEntrada $$
 CREATE PROCEDURE
     venderEntrada (
-        OUT unvalor decimal(6, 2),
+        OUT numEntrada int,
+        in unvalor decimal(6, 2),
         in unidProyeccion smallint unsigned,
         in unidCliente smallint unsigned
     )

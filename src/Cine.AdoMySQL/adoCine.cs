@@ -60,9 +60,4 @@ public class AdoCine : IAdo
 
     public Proyeccion ProyeccionPorId(byte id)
         => MapProyeccion.ProyeccionPorId(id);
-
-    public void registrarCliente(Cliente cliente)
-    {
-        throw new NotImplementedException();
-    }
 }

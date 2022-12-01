@@ -1,12 +1,14 @@
-USE CINE;
+-- Active: 1646654372192@@127.0.0.1@3306@cine
+delimiter ;
+USE CINE ;
 
-SELECT 'Creando calls' Estado;
+SELECT 'Creando calls' Estado ;
 
-call AltaGenero (1, "comedia");
+call AltaGenero (@idComedia, "comedia");
 
-call AltaGenero(2, "Accion");
+call AltaGenero(@idAccion, "Accion");
 
-call AltaGenero(3, "Terror");
+call AltaGenero(@idTerror, "Terror");
 
 call altaSala(1, 7, 40);
 
@@ -15,32 +17,37 @@ call altaSala(2, 1, 70);
 call altaSala (3, 2, 100);
 
 call
-    altaPelicula(
-        1,
+    altaPelicula(@idNiños,
         "son como niños 2",
         "2004-03-1",
-        1
+        @idComedia
+    );
+call
+    altaPelicula(@idBatman,
+        "Batman Ciudad Gotica",
+        "1980-03-12",
+        @idAccion
     );
 
 call
-    altaPelicula(
-        2,
-        "Batman Ciudad Gotica",
-        "1980-03-12"
-    )
+    altaPelicula(@it,
+        "it",
+        "1980-03-12",
+        @idTerror
+    );
 call
-    altaProyeccion (1, "2004-03-1 14:30", 1, 1);
+    altaProyeccion (@idProyeccion1, "2004-03-1 14:30", @idBatman, 1);
 
 call
     registrarCliente(
-        1,
+        @idCliente1,
         "dimitri12@gmail.com",
         "miguel angel",
         "barreiro",
         "12enletras"
     );
 
-call venderEntrada(900, 1, 1);
+call venderEntrada(@NumEntrada1, 200, @idProyeccion1, @idCliente1);
 
 call
     top10 (
@@ -53,4 +60,4 @@ select
         1,
         "12-03-12 12:16",
         "15-03-05 18:51"
-    )
+    );

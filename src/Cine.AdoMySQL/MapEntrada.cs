@@ -20,10 +20,9 @@ namespace Cine.AdoMySQL.Mapeadores
 
         public override Entrada ObjetoDesdeFila(DataRow fila) => new Entrada
         (
-            NumEntrada: Convert.ToByte(fila["Id"]),
+            NumEntrada: Convert.ToByte(fila["idEntrada"]),
             IdProyeccion: Convert.ToUInt16(fila["IdProyeccion"]),
             IdCliente: Convert.ToByte(fila["IdCliente"]),
-            capacidad: Convert.ToInt32(fila["capacidad"]),
             valor: Convert.ToSingle(fila["valor"])
         );
 
@@ -35,10 +34,10 @@ namespace Cine.AdoMySQL.Mapeadores
 
         public void ConfigurarAltaEntrada(Entrada entrada)
         {
-            SetComandoSP("AltaEntrada");
+            SetComandoSP("venderEntrada");
 
-            BP.CrearParametroSalida("unIdEntrada")
-            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
+            BP.CrearParametroSalida("numEntrada")
+            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Int32)
             .AgregarParametro();
 
             BP.CrearParametroSalida("unidproyeccion")
@@ -48,14 +47,12 @@ namespace Cine.AdoMySQL.Mapeadores
 
             BP.CrearParametroSalida("unIdCliente")
             .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
-            .SetValor(entrada.IdCliente);
-
-            BP.CrearParametroSalida("Capacidad")
-            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Int32)
+            .SetValor(entrada.IdCliente)
             .AgregarParametro();
 
-            BP.CrearParametroSalida("valor")
-            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Float)
+            BP.CrearParametroSalida("unvalor")
+            .SetTipoDecimal(6,2)
+            .SetValor(entrada.Valor)
             .AgregarParametro();
         }
 

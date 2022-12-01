@@ -20,7 +20,7 @@ public class MapCliente : Mapeador<Cliente>
                 clave: fila["clave"].ToString()!
             );
     public void AltaCliente(Cliente cliente)
-            => EjecutarComandoCon("", ConfigurarAltaCliente, PostAltaCliente, cliente);
+            => EjecutarComandoCon("registrarCliente", ConfigurarAltaCliente, PostAltaCliente, cliente);
 
     public void ConfigurarAltaCliente(Cliente cliente)
     {
@@ -52,7 +52,7 @@ public class MapCliente : Mapeador<Cliente>
     }
     public void PostAltaCliente(Cliente cliente)
     {
-        var paramId = GetParametro("unid");
+        var paramId = GetParametro("unidCliente");
         cliente.id = Convert.ToByte(paramId.Value);
     }
 

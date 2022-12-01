@@ -15,7 +15,10 @@ public class PeliculaTest
     public void AltaPelicula()
     {
         var pelicula = new Pelicula(3, "son como niños 2", new DateTime(2004, 09, 25), 1);
+        var elementos = AdoCine.PeliculaMap.ColeccionDesdeTabla().Count;
+
         AdoCine.AltaPelicula(pelicula);
-        Assert.Equal(3, pelicula.idPelicula);
+        var elementosnuevos = AdoCine.PeliculaMap.ColeccionDesdeTabla().Count;
+        Assert.Equal(elementosnuevos, elementos + 1);
     }
 }

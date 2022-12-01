@@ -22,7 +22,7 @@ CREATE TABLE
 
 CREATE TABLE
     CINE.Pelicula(
-        idPelicula smallint unsigned not null,
+        idPelicula smallint unsigned not null AUTO_INCREMENT,
         nombre varchar(45) not null,
         estreno date not null,
         idGenero tinyint unsigned not null,
@@ -54,7 +54,7 @@ CREATE TABLE
 
 CREATE TABLE
     CINE.Entrada(
-        numEntrada int not null,
+        numEntrada int not null auto_increment,
         idProyeccion smallint unsigned not null,
         idCliente smallint unsigned not null,
         valor DECIMAL (6, 2) NOT null,
