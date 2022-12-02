@@ -14,8 +14,10 @@ public class GeneroTest
     [Fact]
     public void AltaGenero()
     {
-        var genero = new Genero(4, "Accion");
+        var genero = new Genero(5, "Romance");
+        var elementos = AdoCine.MapGenero.ColeccionDesdeTabla().Count;
         AdoCine.AltaGenero(genero);
-        Assert.Equal(3, genero.Id);
+        var elementosnuevos = AdoCine.MapGenero.ColeccionDesdeTabla().Count;
+        Assert.Equal(elementos + 1, elementosnuevos);
     }
 }

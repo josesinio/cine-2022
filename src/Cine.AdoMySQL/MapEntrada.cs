@@ -40,8 +40,8 @@ namespace Cine.AdoMySQL.Mapeadores
             .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Int32)
             .AgregarParametro();
 
-            BP.CrearParametroSalida("unidproyeccion")
-            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
+            BP.CrearParametroSalida("unIdproyeccion")
+            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UInt16)
             .SetValor(entrada.IdProyeccion)
             .AgregarParametro();
 
@@ -51,7 +51,7 @@ namespace Cine.AdoMySQL.Mapeadores
             .AgregarParametro();
 
             BP.CrearParametroSalida("unvalor")
-            .SetTipoDecimal(6,2)
+            .SetTipoDecimal(6, 2)
             .SetValor(entrada.Valor)
             .AgregarParametro();
         }

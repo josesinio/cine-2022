@@ -13,7 +13,7 @@ public class MapGenero : Mapeador<Genero>
             => new Genero
             (
                 Id: Convert.ToByte(fila["idGenero"]),
-                Nombre: fila["Nombre"].ToString()!
+                genero: fila["genero"].ToString()!
             );
     public void AltaGenero(Genero genero)
             => EjecutarComandoCon("AltaGenero", ConfigurarAltaGenero, PostAltaGenero, genero);
@@ -26,15 +26,15 @@ public class MapGenero : Mapeador<Genero>
         .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
         .AgregarParametro();
 
-        BP.CrearParametro("unNombre")
+        BP.CrearParametro("unGenero")
         .SetTipoVarchar(45)
-        .SetValor(genero.Nombre!)
+        .SetValor(genero.genero!)
         .AgregarParametro();
     }
 
     public void PostAltaGenero(Genero genero)
     {
-        var paramId = GetParametro("unId");
+        var paramId = GetParametro("unIdgenero");
         genero.Id = Convert.ToByte(paramId.Value);
     }
 

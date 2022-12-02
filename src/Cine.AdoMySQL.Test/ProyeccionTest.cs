@@ -16,9 +16,12 @@ public class ProyeccionTest
     [Fact]
     public void AltaProyeccion()
     {
-        var proyeccion = new Proyeccion(2, DateTime.Now, 6, 6);
+
+        var proyeccion = new Proyeccion(2, DateTime.Now, 3, 4);
+        var elementos = AdoCine.MapProyeccion.ColeccionDesdeTabla().Count;
         AdoCine.AltaProyeccion(proyeccion);
-        Assert.Equal(6, proyeccion.id);
+        var elementosnuevos = AdoCine.MapProyeccion.ColeccionDesdeTabla().Count;
+        Assert.Equal(elementos + 1, elementosnuevos);
 
     }
 }

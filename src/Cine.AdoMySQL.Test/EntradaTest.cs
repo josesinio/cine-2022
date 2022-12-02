@@ -17,13 +17,12 @@ public class EntradaTest
     [Fact]
     public void venderEntrada()
     {
-        var proyeccion = new Proyeccion(2, DateTime.Now, 5, 5);
+        var proyeccion = new Proyeccion(3, DateTime.Now, 5, 5);
         var entrada = new Entrada(2, 3, 3, 300);
         var elementos = AdoCine.MapEntrada.ColeccionDesdeTabla().Count;
 
         AdoCine.AltaEntrada(entrada);
         var elementosnuevos = AdoCine.MapEntrada.ColeccionDesdeTabla().Count;
-        
         Assert.Equal(elementos + 1, elementosnuevos);
     }
 }
