@@ -12,31 +12,28 @@ drop trigger
 CREATE TRIGGER
     BefInsEntrada BEFORE
 INSERT
-    ON Entrada For Each row begin declare cantidadEntradas TINYINT;
+    ON Entrada For Each row
+begin
+    declare cantidadEntradas TINYINT;
 
-declare cantidadButacas smallint unsigned;
+    declare cantidadButacas smallint unsigned;
 
-Select
-    COUNT(numEntrada) into cantidadEntradas
-from Entrada
-    join Proyeccion Using (idProyeccion)
-WHERE
-    Entrada.idProyeccion = new.idProyeccion;
+    Select COUNT(*) into cantidadEntradas
+    from Entrada
+    WHERE idProyeccion = new.idProyeccion;
 
-select
-    count(capacidad) into cantidadButacas
-from Sala
-    join Proyeccion Using (idProyeccion)
-where
-    idProyeccion = new.idProyeccion;
+    select capacidad into cantidadButacas
+    from Sala
+    join Proyeccion Using (NumSala)
+    where idProyeccion = new.idProyeccion;
 
-if (
-    cantidadButacas <= cantidadEntradas
-) then signal sqlstate "45000"
-set
-    message_text = "La sala esta llena";
+    if (
+        cantidadButacas <= cantidadEntradas
+    ) then signal sqlstate "45000"
+    set
+        message_text = "La sala esta llena";
 
-end if;
+    end if;
 
 end $$ -- Realizar un trigger para que cada vez que se da de alta una película nueva, se crea una proyección por cada sala y para la fecha y hora de creación.
 

@@ -17,8 +17,8 @@ public class EntradaTest
     [Fact]
     public void venderEntrada()
     {
-        var proyeccion = new Proyeccion(3, DateTime.Now, 5, 5);
-        var entrada = new Entrada(2, 3, 3, 300);
+        
+        var entrada = new Entrada(2, 1, 1, 300);
         var elementos = AdoCine.MapEntrada.ColeccionDesdeTabla().Count;
 
         AdoCine.AltaEntrada(entrada);

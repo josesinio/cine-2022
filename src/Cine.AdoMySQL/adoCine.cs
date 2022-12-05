@@ -20,7 +20,7 @@ public class AdoCine : IAdo
         MapSala = new MapSala(ado);
         MapProyeccion = new MapProyeccion(MapSala, PeliculaMap);
         MapCliente = new MapCliente(ado);
-        MapEntrada = new MapEntrada(MapProyeccion, MapSala, MapCliente);
+        MapEntrada = new MapEntrada(ado);
 
     }
 

@@ -20,7 +20,7 @@ call altaSala (3, 2, 100);
 
 call
     altaPelicula(
-        @idNi ños,
+        @idNiños,
         "son como niños 2",
         "2004-03-1",
         @idComedia

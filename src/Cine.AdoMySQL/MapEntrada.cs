@@ -7,14 +7,8 @@ namespace Cine.AdoMySQL.Mapeadores
 {
     public class MapEntrada : Mapeador<Entrada>
     {
-        public MapProyeccion MapProyeccion { get; set; }
-        public MapSala MapSala { get; set; }
-        public MapCliente MapCliente { get; set; }
-        public MapEntrada(MapProyeccion mapProyeccion, MapSala mapSala, MapCliente mapCliente) : base(mapProyeccion.AdoAGBD)
+        public MapEntrada(AdoAGBD ado) : base(ado)
         {
-            MapProyeccion = mapProyeccion;
-            MapSala = mapSala;
-            MapCliente = mapCliente;
             Tabla = "Entrada";
         }
 
@@ -28,7 +22,7 @@ namespace Cine.AdoMySQL.Mapeadores
 
         public void AltaEntrada(Entrada entrada)
         {
-            EjecutarComandoCon("AltaEntrada", ConfigurarAltaEntrada, PostAltaEntrada, entrada);
+            EjecutarComandoCon("venderEntrada", ConfigurarAltaEntrada, PostAltaEntrada, entrada);
         }
 
 
@@ -37,7 +31,7 @@ namespace Cine.AdoMySQL.Mapeadores
             SetComandoSP("venderEntrada");
 
             BP.CrearParametroSalida("numEntrada")
-            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Int32)
+            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
             .AgregarParametro();
 
             BP.CrearParametro("unvalor")
@@ -58,12 +52,12 @@ namespace Cine.AdoMySQL.Mapeadores
 
         public void PostAltaEntrada(Entrada entrada)
         {
-            var paramIdEntrada = GetParametro("unIdEntrada");
-            entrada.NumEntrada = Convert.ToByte(paramIdEntrada.Value);
+            var paramnumEntrada = GetParametro("numEntrada");
+            entrada.NumEntrada = Convert.ToByte(paramnumEntrada.Value);
         }
         public Entrada EntradaPorId(byte NumEntrada)
         {
-            return FiltrarPorPK("idEntrada", NumEntrada)!;
+            return FiltrarPorPK("numEntrada", NumEntrada)!;
         }
 
     }

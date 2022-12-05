@@ -126,30 +126,32 @@ CREATE PROCEDURE
         in unvalor decimal(6, 2),
         in unidProyeccion smallint unsigned,
         in unidCliente smallint unsigned
-    ) BEGIN -- 1 ) declarar var para id, se asigna como la cantidad de entradas para esa func + 1.
-    -- 2 ) usar ese id para el nro de entrada. 
-    declare num int default 0;
-
-SELECT count(*) + 1 into num
-FROM entrada
-WHERE
-    idProyeccion = unidProyeccion;
-
-INSERT INTO
-    Entrada (
-        numEntrada,
-        valor,
-        idProyeccion,
-        idcliente
     )
-VALUES (
-        num,
-        unvalor,
-        unidProyeccion,
-        unidCliente
-    );
+BEGIN
+    -- 1 ) declarar var para id, se asigna como la cantidad de entradas para esa func + 1.
+    -- 2 ) usar ese id para el nro de entrada. 
 
-end $$ -- Cuarto Ejercicio de STORED PROCEDURE 01-SPF.SQL
+    SELECT count(*) + 1 into numEntrada
+    FROM entrada
+    WHERE
+        idProyeccion = unidProyeccion;
+
+    INSERT INTO
+        Entrada (
+            numEntrada,
+            valor,
+            idProyeccion,
+            idcliente
+        )
+    VALUES (
+            numEntrada,
+            unvalor,
+            unidProyeccion,
+            unidCliente
+        );
+end $$
+
+-- Cuarto Ejercicio de STORED PROCEDURE 01-SPF.SQL
 -- Realizar el SP ‘top10’ que reciba por parámetro 2 fechas, el SP tiene que devolver identificador y nombre de la película y la cantidad de entradas vendidas para la misma entre las 2 fechas. Ordenar por cantidad de entradas de mayor a menor.
 
 DELIMITER $$
