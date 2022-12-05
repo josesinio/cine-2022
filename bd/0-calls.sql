@@ -1,5 +1,7 @@
 -- Active: 1646654372192@@127.0.0.1@3306@cine
+
 delimiter ;
+
 USE CINE ;
 
 SELECT 'Creando calls' Estado ;
@@ -17,26 +19,36 @@ call altaSala(2, 1, 70);
 call altaSala (3, 2, 100);
 
 call
-    altaPelicula(@idNiños,
+    altaPelicula(
+        @idNi ños,
         "son como niños 2",
         "2004-03-1",
         @idComedia
     );
+
 call
-    altaPelicula(@idBatman,
+    altaPelicula(
+        @idBatman,
         "Batman Ciudad Gotica",
         "1980-03-12",
         @idAccion
     );
 
 call
-    altaPelicula(@it,
+    altaPelicula(
+        @it,
         "it",
         "1980-03-12",
         @idTerror
     );
+
 call
-    altaProyeccion (@idProyeccion1, "2004-03-1 14:30", @idBatman, 1);
+    altaProyeccion (
+        @idProyeccion1,
+        "2004-03-1 14:30",
+        @idBatman,
+        1
+    );
 
 call
     registrarCliente(

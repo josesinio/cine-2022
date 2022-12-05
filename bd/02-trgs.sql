@@ -4,18 +4,15 @@
 
 delimiter $$
 
-SELECT 'Creando triggers' Estado $$
+SELECT
+    'Creando triggers' Estado $$
 USE Cine $$
-
 drop trigger
     if exists BefInsEntrada $$
 CREATE TRIGGER
     BefInsEntrada BEFORE
 INSERT
-    ON Entrada For Each row
-
-begin declare cantidadEntradas TINYINT;
-
+    ON Entrada For Each row begin declare cantidadEntradas TINYINT;
 
 declare cantidadButacas smallint unsigned;
 
@@ -24,7 +21,7 @@ Select
 from Entrada
     join Proyeccion Using (idProyeccion)
 WHERE
-    idProyeccion = new.idProyeccion;
+    Entrada.idProyeccion = new.idProyeccion;
 
 select
     count(capacidad) into cantidadButacas
@@ -41,10 +38,7 @@ set
 
 end if;
 
-end $$
-
--- Realizar un trigger para que cada vez que se da de alta una película nueva, se crea una proyección por cada sala y para la fecha y hora de creación.
-
+end $$ -- Realizar un trigger para que cada vez que se da de alta una película nueva, se crea una proyección por cada sala y para la fecha y hora de creación.
 
 delimiter $$
 
@@ -61,5 +55,5 @@ SELECT
     new.idPelicula,
     numSala
 FROM Sala;
-end $$ 
 
+end $$ 

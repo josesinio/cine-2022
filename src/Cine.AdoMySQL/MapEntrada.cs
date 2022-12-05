@@ -21,9 +21,9 @@ namespace Cine.AdoMySQL.Mapeadores
         public override Entrada ObjetoDesdeFila(DataRow fila) => new Entrada
         (
             NumEntrada: Convert.ToByte(fila["numEntrada"]),
+            valor: Convert.ToDecimal(fila["valor"]),
             IdProyeccion: Convert.ToUInt16(fila["IdProyeccion"]),
-            IdCliente: Convert.ToByte(fila["IdCliente"]),
-            valor: Convert.ToDecimal(fila["valor"])
+            IdCliente: Convert.ToByte(fila["IdCliente"])
         );
 
         public void AltaEntrada(Entrada entrada)
@@ -40,19 +40,19 @@ namespace Cine.AdoMySQL.Mapeadores
             .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Int32)
             .AgregarParametro();
 
-            BP.CrearParametroSalida("unIdproyeccion")
+            BP.CrearParametro("unvalor")
+            .SetTipoDecimal(6, 2)
+            .SetValor(entrada.Valor)
+            .AgregarParametro();
+
+            BP.CrearParametro("unIdproyeccion")
             .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UInt16)
             .SetValor(entrada.IdProyeccion)
             .AgregarParametro();
 
-            BP.CrearParametroSalida("unIdCliente")
-            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
+            BP.CrearParametro("unIdCliente")
+            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UInt16)
             .SetValor(entrada.IdCliente)
-            .AgregarParametro();
-
-            BP.CrearParametroSalida("unvalor")
-            .SetTipoDecimal(6, 2)
-            .SetValor(entrada.Valor)
             .AgregarParametro();
         }
 
@@ -61,9 +61,9 @@ namespace Cine.AdoMySQL.Mapeadores
             var paramIdEntrada = GetParametro("unIdEntrada");
             entrada.NumEntrada = Convert.ToByte(paramIdEntrada.Value);
         }
-        public Entrada EntradaPorId(byte numEntrada)
+        public Entrada EntradaPorId(byte NumEntrada)
         {
-            return FiltrarPorPK("idEntrada", numEntrada)!;
+            return FiltrarPorPK("idEntrada", NumEntrada)!;
         }
 
     }

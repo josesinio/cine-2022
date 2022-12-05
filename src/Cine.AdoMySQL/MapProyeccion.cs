@@ -16,7 +16,7 @@ public class MapProyeccion : Mapeador<Proyeccion>
 
     public override Proyeccion ObjetoDesdeFila(DataRow fila)
     => new Proyeccion(
-        id: Convert.ToUInt16(fila["idProyeccion"]),
+        id: Convert.ToUInt16(fila["IdProyeccion"]),
         fechaHora: Convert.ToDateTime(fila["fechahora"]),
         IdPelicula: Convert.ToUInt16(fila["IdPelicula"]),
         IdSala: Convert.ToByte(fila["numSala"])
@@ -59,7 +59,7 @@ public class MapProyeccion : Mapeador<Proyeccion>
 
     public Proyeccion ProyeccionPorId(ushort id)
     {
-        return FiltrarPorPK("idProyeccion", id)!;
+        return FiltrarPorPK("IdProyeccion", id)!;
     }
 
     public List<Proyeccion> ObtenerProyecciones(Pelicula pelicula)
