@@ -60,4 +60,7 @@ public class AdoCine : IAdo
 
     public Proyeccion ProyeccionPorId(byte id)
         => MapProyeccion.ProyeccionPorId(id);
+
+    public List<Entrada> EntradasCliente()
+        => MapEntrada.ColeccionDesdeSP();
 }

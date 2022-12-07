@@ -17,12 +17,22 @@ public class EntradaTest
     [Fact]
     public void venderEntrada()
     {
-        
+
         var entrada = new Entrada(2, 1, 1, 300);
         var elementos = AdoCine.MapEntrada.ColeccionDesdeTabla().Count;
 
         AdoCine.AltaEntrada(entrada);
         var elementosnuevos = AdoCine.MapEntrada.ColeccionDesdeTabla().Count;
         Assert.Equal(elementos + 1, elementosnuevos);
+    }
+
+    [Fact]
+    public void EntradasCliente()
+    {
+        var entrada = new Entrada(3, 2, 6, 210);
+        var cliente = new Cliente(8, "jajajaj", "Carlos", "qseyo", "513540fxa465");
+
+        AdoCine.EntradasCliente(entrada);
+
     }
 }

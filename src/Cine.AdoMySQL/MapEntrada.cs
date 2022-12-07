@@ -2,6 +2,7 @@ using et12.edu.ar.AGBD.Mapeadores;
 using et12.edu.ar.AGBD.Ado;
 using System.Data;
 using Cine.Core;
+using static System.Convert;
 
 namespace Cine.AdoMySQL.Mapeadores
 {
@@ -14,10 +15,10 @@ namespace Cine.AdoMySQL.Mapeadores
 
         public override Entrada ObjetoDesdeFila(DataRow fila) => new Entrada
         (
-            NumEntrada: Convert.ToByte(fila["numEntrada"]),
-            valor: Convert.ToDecimal(fila["valor"]),
-            IdProyeccion: Convert.ToUInt16(fila["IdProyeccion"]),
-            IdCliente: Convert.ToByte(fila["IdCliente"])
+            NumEntrada: ToByte(fila["numEntrada"]),
+            valor: ToDecimal(fila["valor"]),
+            IdProyeccion: ToUInt16(fila["IdProyeccion"]),
+            IdCliente: ToByte(fila["IdCliente"])
         );
 
         public void AltaEntrada(Entrada entrada)
@@ -60,5 +61,17 @@ namespace Cine.AdoMySQL.Mapeadores
             return FiltrarPorPK("numEntrada", NumEntrada)!;
         }
 
+        public List<Entrada> EntradasHabilitadas(byte IdCliente)
+        {
+            SetComandoSP("EntradasCliente");
+
+            BP.CrearParametro("unIdCliente")
+            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UInt16)
+            .SetValor(IdCliente)
+            .AgregarParametro();
+
+
+            return ColeccionDesdeSP();
+        }
     }
 }
