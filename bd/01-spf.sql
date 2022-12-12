@@ -198,13 +198,17 @@ end $$ -- Realizar un SPF que traiga las entradas proximas (Proyeccion) a ver de
 
 DELIMITER $$ 
 
-DROP PROCEDURE IF EXISTS EntradasCliente $$
-CREATE PROCEDURE EntradasCliente(idcliente smallint unsigned) 
-BEGIN
-    SELECT *
-    FROM Entrada
-    JOIN Proyeccion using (idProyeccion)
-    WHERE
-        idCliente = unidCliente and fechahora > now();
+DROP PROCEDURE
+    IF EXISTS EntradasCliente $$
+CREATE PROCEDURE
+    EntradasCliente(unidcliente smallint unsigned) BEGIN
+SELECT
+    e.idCliente,
+    e.numEntrada
+FROM Entrada e
+    JOIN Proyeccion p using (idProyeccion)
+WHERE
+    idCliente = unidCliente
+    and fechahora > now();
 
 end $$ 

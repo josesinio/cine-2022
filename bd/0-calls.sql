@@ -51,6 +51,14 @@ call
     );
 
 call
+    altaProyeccion (
+        @idProyeccion2,
+        "2100-03-1 14:30",
+        @idFlash,
+        2
+    );
+
+call
     registrarCliente(
         @idCliente1,
         "dimitri12@gmail.com",

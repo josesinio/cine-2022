@@ -65,7 +65,7 @@ namespace Cine.AdoMySQL.Mapeadores
         {
             SetComandoSP("EntradasCliente");
 
-            BP.CrearParametro("unIdCliente")
+            BP.CrearParametro("unidCliente")
             .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UInt16)
             .SetValor(IdCliente)
             .AgregarParametro();

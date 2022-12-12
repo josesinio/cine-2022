@@ -29,10 +29,8 @@ public class EntradaTest
     [Fact]
     public void EntradasCliente()
     {
-        var entrada = new Entrada(3, 2, 6, 210);
-        var cliente = new Cliente(8, "jajajaj", "Carlos", "qseyo", "513540fxa465");
-
-        AdoCine.EntradasCliente(entrada);
-
+        var entradas =  AdoCine.MapEntrada.EntradasHabilitadas(1);
+        Assert.Single(entradas);
+        
     }
 }
