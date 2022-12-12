@@ -201,10 +201,12 @@ DELIMITER $$
 DROP PROCEDURE
     IF EXISTS EntradasCliente $$
 CREATE PROCEDURE
-    EntradasCliente(unidcliente smallint unsigned) BEGIN
+    EntradasCliente(unidCliente smallint unsigned) BEGIN
 SELECT
     e.idCliente,
-    e.numEntrada
+    e.numEntrada,
+    e.idProyeccion,
+    e.valor 
 FROM Entrada e
     JOIN Proyeccion p using (idProyeccion)
 WHERE

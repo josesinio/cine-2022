@@ -58,7 +58,7 @@ public class AdoCine : IAdo
     public List<Entrada> ObtenerEntrada()
         => MapEntrada.ColeccionDesdeTabla();
 
-    public Proyeccion ProyeccionPorId(byte id)
+    public Proyeccion ProyeccionPorId(ushort id)
         => MapProyeccion.ProyeccionPorId(id);
 
     public List<Entrada> EntradasCliente(byte id)

@@ -30,7 +30,13 @@ public class EntradaTest
     public void EntradasCliente()
     {
         var entradas =  AdoCine.MapEntrada.EntradasHabilitadas(1);
+        var entrada = entradas.FirstOrDefault();
+        if (entrada is null)
+            throw new ArgumentNullException("entrada");
+
+        var proyeccion = AdoCine.ProyeccionPorId(entrada.IdProyeccion);
+
         Assert.Single(entradas);
-        
+        Assert.True(DateTime.Now < proyeccion.fechaHora);
     }
 }
