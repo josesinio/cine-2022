@@ -15,7 +15,7 @@
 
 **Nombre TP**:TP Anual: Entrega 0 
 
-**Apellido y nombre Alumno**: Jose cruz rojas
+**Apellido y nombre Alumno**: Jose Cruz, Esthefany Quiroga, Brenda Duran
 
 **Curso**: 5°7
 
