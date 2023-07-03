@@ -26,6 +26,8 @@ public class AdoCine : IAdo
 
     public void AltaGenero(Genero genero)
         => MapGenero.AltaGenero(genero);
+    public async Task AltaGeneroAsync(Genero genero)
+        => await MapGenero.AltaGeneroAsync(genero);
     public List<Genero> ObtenerGenero()
         => MapGenero.ColeccionDesdeTabla();
 

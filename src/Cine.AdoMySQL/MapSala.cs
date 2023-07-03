@@ -64,4 +64,9 @@ public class MapSala : Mapeador<Sala>
     {
         return FilasFiltradas("idSala", sala.NumSala);
     }
+
+    internal Task AltaSalaAsync(Sala sala)
+    {
+        throw new NotImplementedException();
+    }
 }

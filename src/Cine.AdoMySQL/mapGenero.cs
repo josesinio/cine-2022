@@ -54,4 +54,8 @@ public class MapGenero : Mapeador<Genero>
     {
         return FilasFiltradas("idGenero", genero.Id);
     }
+
+    internal Task AltaGeneroAsync(Genero genero)
+        => EjecutarComandoAsync("AltaGenero", ConfigurarAltaGenero, PostAltaGenero, genero);
+    
 }
