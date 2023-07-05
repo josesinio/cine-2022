@@ -66,4 +66,7 @@ public class MapProyeccion : Mapeador<Proyeccion>
     {
         return FilasFiltradas("idPelicula", pelicula.idPelicula);
     }
+
+    internal Task AltaProyeccionAsync(Proyeccion proyeccion)
+        => EjecutarComandoAsync("altaProyeccion", ConfigurarAltaProyeccion, PostAltaProyeccion, proyeccion);
 }

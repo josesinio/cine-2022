@@ -54,4 +54,7 @@ public class PeliculaMap : Mapeador<Pelicula>
     }
     public Pelicula? PeliculaPorId(ushort id) => FiltrarPorPK("idPelicula", id);
     public List<Pelicula> obtenerPeliculas() => ColeccionDesdeTabla();
+
+    internal Task AltaPeliculaAsync(Pelicula pelicula)
+        => EjecutarComandoAsync("altaPelicula", ConfigurarAltaPelicula, PosAltaPelicula, pelicula);
 }

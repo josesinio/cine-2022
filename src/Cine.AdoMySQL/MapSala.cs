@@ -66,7 +66,5 @@ public class MapSala : Mapeador<Sala>
     }
 
     internal Task AltaSalaAsync(Sala sala)
-    {
-        throw new NotImplementedException();
-    }
+        => EjecutarComandoAsync("AltaSala", ConfigurarAltaSala, postAltaSala, sala);
 }

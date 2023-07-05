@@ -73,5 +73,8 @@ namespace Cine.AdoMySQL.Mapeadores
 
             return ColeccionDesdeSP();
         }
+
+        internal Task AltaEntradaAsync(Entrada entrada)
+            => EjecutarComandoAsync("venderEntrada", ConfigurarAltaEntrada, PostAltaEntrada, entrada);
     }
 }

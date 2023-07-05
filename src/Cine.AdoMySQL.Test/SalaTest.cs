@@ -22,4 +22,15 @@ public class SalaTest
 
         Assert.Equal(elementosnuevos, elementos + 1);
     }
+
+    [Fact]
+    public async Task TestName()
+    {
+        var sala = new Sala(4, 3, 200);
+        var elementos = AdoCine.MapSala.ColeccionDesdeTabla().Count;
+        await AdoCine.AltaSalaAsync(sala);
+        var elementosnuevos = AdoCine.MapSala.ColeccionDesdeTabla().Count;
+        Assert.Equal(elementosnuevos, elementos + 1);
+    }
+
 }

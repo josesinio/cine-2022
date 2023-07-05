@@ -71,4 +71,7 @@ public class MapCliente : Mapeador<Cliente>
     {
         return FilasFiltradas("idCliente", cliente.id);
     }
+
+    internal Task AltaClienteAsync(Cliente cliente)
+        => EjecutarComandoAsync("registrarCliente", ConfigurarAltaCliente, PostAltaCliente, cliente);
 }

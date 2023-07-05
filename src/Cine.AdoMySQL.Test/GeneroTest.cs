@@ -20,4 +20,13 @@ public class GeneroTest
         var elementosnuevos = AdoCine.MapGenero.ColeccionDesdeTabla().Count;
         Assert.Equal(elementos + 1, elementosnuevos);
     }
+    [Fact]
+    public async Task TestName()
+    {
+        var genero = new Genero(5, "Romance");
+        var elementos = AdoCine.MapGenero.ColeccionDesdeTabla().Count;
+        await AdoCine.AltaGeneroAsync(genero);
+        var elementosnuevos = AdoCine.MapGenero.ColeccionDesdeTabla().Count;
+        Assert.Equal(elementos + 1, elementosnuevos);
+    }
 }
